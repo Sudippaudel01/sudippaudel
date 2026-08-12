@@ -28,7 +28,7 @@ export default function Footer() {
                   <a
                     href={s.url}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="me noopener noreferrer"
                     className="font-mono text-sm text-mint transition-colors hover:text-copper-bright"
                   >
                     {s.label} <span className="text-mint/50">/ {s.handle}</span>

@@ -10,6 +10,7 @@ export default function Skills() {
         designator="U2"
         eyebrow="Skills"
         title="Pinout"
+        srTitle="Technical skills — languages, embedded hardware and tools"
         intro="Proficiency by pin. Filled pads indicate depth of hands-on use."
       />
 

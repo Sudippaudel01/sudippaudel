@@ -58,6 +58,7 @@ export default function Contact() {
         designator="J1"
         eyebrow="Contact"
         title="Hire me"
+        srTitle="Contact Sudip Paudel — hire me for a Summer 2026 engineering internship"
         intro="Looking for a Summer 2026 engineering internship — embedded, hardware, full-stack, or anywhere the three meet. Send a message and I'll reply."
       />
 
@@ -111,7 +112,7 @@ export default function Contact() {
                 <a
                   href={s.url}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="me noopener noreferrer"
                   className="flex items-center gap-3 font-mono text-sm text-mint transition-colors hover:text-copper-bright"
                 >
                   <span className="pad h-2 w-2" />

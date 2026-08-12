@@ -4,7 +4,12 @@ import { profile } from "@/lib/data";
 export default function Education() {
   return (
     <section id="education" className="scroll-mt-24">
-      <SectionHeading designator="U3" eyebrow="Education" title="Coursework" />
+      <SectionHeading
+        designator="U3"
+        eyebrow="Education"
+        title="Coursework"
+        srTitle="Education — B.E. Computer Engineering, UT Arlington"
+      />
 
       <ol className="relative space-y-8 border-l border-copper/25 pl-8">
         {profile.education.map((ed) => (

@@ -22,19 +22,19 @@ export function generateMetadata({ params }: Params): Metadata {
 
   return {
     title: project.title,
-    description: project.summary,
+    description: project.metaDescription,
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
       type: "article",
       title: `${project.title} — ${profile.name}`,
-      description: project.summary,
+      description: project.metaDescription,
       url: `/projects/${project.slug}`,
       images: [{ url: project.cover, width: 1200, height: 675, alt: project.coverAlt }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${project.title} — ${profile.name}`,
-      description: project.summary,
+      description: project.metaDescription,
       images: [project.cover],
     },
   };

@@ -9,6 +9,7 @@
     "updated": "2026-08-12",
     "featured": true,
     "summary": "A bare-metal universal IR remote that records and replays signals from any consumer remote via a UART command shell — every driver written at the register level, with no vendor HAL.",
+    "metaDescription": "Bare-metal universal IR remote on ARM Cortex-M4 (TM4C123). Register-level drivers, dual-edge input capture and a 38 kHz PWM carrier — no vendor HAL.",
     "cover": "/projects/ir-remote-control-replacement.png",
     "coverAlt": "Captured IR mark/space waveform with a 38 kHz carrier inset",
     "stack": [
@@ -74,6 +75,7 @@
     "updated": "2026-08-12",
     "featured": true,
     "summary": "A 16-bit IEEE 754 floating-point adder/subtractor designed and synthesized in SystemVerilog, wrapped in a complete keypad-to-display user-facing system.",
+    "metaDescription": "16-bit IEEE 754 floating-point adder in SystemVerilog on an Intel MAX 10 FPGA. 706 logic elements, 137 registers, closed with static timing analysis.",
     "cover": "/projects/ieee-754-floating-point-adder.png",
     "coverAlt": "FP16 bit-field layout above the add datapath, normalization shifter marked as the critical path",
     "stack": [
@@ -135,6 +137,7 @@
     "updated": "2026-08-12",
     "featured": true,
     "summary": "A deployed full-stack AI platform that tracks focus, mood, energy and sleep, then predicts a user's cognitive patterns from their own data via a 30-second daily check-in.",
+    "metaDescription": "Full-stack AI platform tracking focus, mood, energy and sleep. Built on Next.js and Supabase with row-level security and a 30-second daily check-in.",
     "cover": "/projects/antarlens.png",
     "coverAlt": "Four tracked cognitive signals plotted over time beside a 30-second check-in ring",
     "stack": [
@@ -198,6 +201,7 @@
     "updated": "2026-08-12",
     "featured": false,
     "summary": "A deployed AI financial tool for freelancers covering cash flow, invoicing and runway forecasting — including a real-time runway calculator that turns financial data into plain-English guidance.",
+    "metaDescription": "AI financial platform for freelancers: real-time runway forecasting, AI pricing advice and automated invoice follow-up. Built with Next.js and Supabase.",
     "cover": "/projects/kashlly.png",
     "coverAlt": "Cash balance declining toward a runway marker, with invoice follow-up statuses",
     "stack": [
@@ -261,6 +265,7 @@
     "updated": "2026-08-12",
     "featured": false,
     "summary": "Led a team designing and presenting a network security solution, coordinating task assignments and deadlines through to faculty recognition for the team's contribution.",
+    "metaDescription": "Led a student team designing and presenting a network security solution at UT Arlington, earning faculty recognition for the team's contribution.",
     "cover": "/projects/network-security-project.png",
     "coverAlt": "Network topology split by a filtering boundary into untrusted and segmented zones",
     "stack": [

@@ -5,7 +5,12 @@ import { profile } from "@/lib/data";
 export default function About() {
   return (
     <section id="about" className="scroll-mt-24">
-      <SectionHeading designator="U1" eyebrow="About" title="Both sides of the line" />
+      <SectionHeading
+        designator="U1"
+        eyebrow="About"
+        title="Both sides of the line"
+        srTitle="About Sudip Paudel — embedded firmware and full-stack engineering"
+      />
 
       <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
         <div>

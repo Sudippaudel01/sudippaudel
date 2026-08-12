@@ -12,6 +12,7 @@ export default function FeaturedProjects() {
         designator="U4"
         eyebrow="Projects"
         title="Selected work"
+        srTitle="Engineering projects — embedded firmware, FPGA RTL and full-stack"
         intro="From register-level firmware to synthesized RTL to deployed platforms."
       />
 

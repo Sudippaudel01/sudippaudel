@@ -341,10 +341,33 @@ content.
 | `sitemap.xml` | `app/sitemap.ts` — all routes, real `lastModified` dates |
 | `robots.txt` | `app/robots.ts` — allows all, disallows `/api/` |
 | `manifest.webmanifest` | `app/manifest.ts` |
-| Structured data | `Person` + `WebSite` sitewide; `SoftwareSourceCode` / `CreativeWork` + `BreadcrumbList` per project; `CollectionPage` + `ItemList` on the index |
+| Structured data | `ProfilePage` + `Person` + `WebSite` sitewide; `SoftwareSourceCode` / `CreativeWork` + `BreadcrumbList` per project; `CollectionPage` + `ItemList` on the index |
+| `rel="me"` on profiles | links GitHub/LinkedIn/sites to one identity |
+| Security headers | `next.config.mjs` — nosniff, frame options, referrer policy |
+| Image optimisation | AVIF/WebP served automatically via `next/image` |
 
 All pages are statically prerendered, so crawlers get complete HTML without
 executing JavaScript.
+
+### Two content fields that exist purely for SEO
+
+**`metaDescription`** on each project (in `projects.json`) is separate from
+`summary`. `summary` is page copy and can run long; `metaDescription` is the
+~150-character version Google shows in results. Keep it **under 158 characters**
+or it gets truncated mid-sentence.
+
+**`srTitle`** on `<SectionHeading>` adds screen-reader-only text to an `<h2>`.
+The visible headings are deliberately figurative — "Pinout", "Coursework", "Both
+sides of the line" — which looks good but tells a search engine nothing. The
+`srTitle` supplies the plain-language version ("Technical skills — languages,
+embedded hardware and tools") without touching the design. Screen-reader users
+get the descriptive text too, so this helps both audiences.
+
+### Google Search Console
+
+`seo.googleSiteVerification` in `profile.json` is empty, so no verification tag
+is emitted. To verify ownership, paste the token from the HTML-tag method in
+Search Console — the `content` value only, not the whole tag — and redeploy.
 
 **Set `NEXT_PUBLIC_SITE_URL` in production.** Without it the code falls back to
 `seo.siteUrl` in `profile.json`. In local dev, `og:image` will show a

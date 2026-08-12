@@ -6,11 +6,18 @@ export default function SectionHeading({
   designator,
   eyebrow,
   title,
+  srTitle,
   intro,
 }: {
   designator: string;
   eyebrow: string;
   title: string;
+  /**
+   * Plain-language heading text for screen readers and search engines.
+   * The visible titles are deliberately figurative ("Pinout", "Coursework");
+   * this keeps the heading outline meaningful without altering the design.
+   */
+  srTitle?: string;
   intro?: string;
 }) {
   return (
@@ -24,7 +31,8 @@ export default function SectionHeading({
       </div>
 
       <h2 className="mt-5 text-3xl font-semibold text-silk sm:text-4xl">
-        {title}
+        <span aria-hidden={srTitle ? "true" : undefined}>{title}</span>
+        {srTitle ? <span className="sr-only">{srTitle}</span> : null}
       </h2>
 
       {intro ? (
