@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --pcb: #0a0d0c;
+    --panel: #151a18;
+    --copper: #c9884f;
+    --copper-bright: #e0a868;
+    --silk: #e8e6df;
+    --mint: #8b9d95;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Keep anchored sections clear of the sticky header. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-pcb text-silk font-sans antialiased;
+  }
+
+  ::selection {
+    background-color: var(--copper);
+    color: var(--pcb);
+  }
+
+  /* Visible keyboard focus everywhere, without a mouse-click focus ring. */
+  :focus-visible {
+    outline: 2px solid var(--copper-bright);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-mono tracking-tight;
+  }
+}
+
+@layer components {
+  /* Section eyebrow: mono, uppercase, copper — the silkscreen label. */
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-copper;
+  }
+
+  /* PCB solder pad: copper ring with a drilled centre. */
+  .pad {
+    @apply block shrink-0 rounded-full border-2 border-copper bg-pcb;
+  }
+
+  /* Panel surface — the secondary board layer. */
+  .panel {
+    @apply border border-copper/20 bg-panel;
+  }
+
+  /* Silkscreen grid, used behind the contact section. */
+  .silkscreen-grid {
+    background-image:
+      linear-gradient(to right, rgba(139, 157, 149, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(139, 157, 149, 0.1) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Copper trace running along an edge. */
+  .trace-line {
+    @apply bg-gradient-to-r from-transparent via-copper/50 to-transparent;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border px-6 py-3 font-mono text-sm
+      uppercase tracking-[0.15em] transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn border-copper bg-copper text-pcb hover:border-copper-bright
+      hover:bg-copper-bright hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply btn border-copper/40 bg-transparent text-silk hover:border-copper
+      hover:text-copper-bright hover:-translate-y-0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Neutralise the hover lift for users who asked for less motion. */
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+}

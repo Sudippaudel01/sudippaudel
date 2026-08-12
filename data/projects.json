@@ -1,0 +1,298 @@
+[
+  {
+    "slug": "ir-remote-control-replacement",
+    "title": "IR Remote Control Replacement",
+    "subtitle": "TM4C123GXL (ARM Cortex-M4)",
+    "category": "Embedded",
+    "context": "Embedded Systems, UTA",
+    "year": "2025",
+    "updated": "2026-08-12",
+    "featured": true,
+    "summary": "A bare-metal universal IR remote that records and replays signals from any consumer remote via a UART command shell — every driver written at the register level, with no vendor HAL.",
+    "cover": "/projects/ir-remote-control-replacement.png",
+    "coverAlt": "Captured IR mark/space waveform with a 38 kHz carrier inset",
+    "stack": [
+      "C",
+      "ARM Cortex-M4",
+      "TI Code Composer Studio"
+    ],
+    "metrics": [
+      {
+        "label": "Carrier",
+        "value": "38 kHz"
+      },
+      {
+        "label": "Timestamp",
+        "value": "32-bit"
+      },
+      {
+        "label": "Resolution",
+        "value": "µs"
+      },
+      {
+        "label": "Vendor HAL",
+        "value": "None"
+      }
+    ],
+    "highlights": [
+      "Wrote all drivers — clock, UART0, timers, NVIC — directly against the datasheet with no vendor HAL.",
+      "Chose raw mark/space timing capture over protocol decoding, making the system remote-agnostic.",
+      "Generated the 38 kHz carrier with Timer0B PWM, gated at runtime by switching a pin between GPIO and alternate function."
+    ],
+    "sections": [
+      {
+        "heading": "Remote-agnostic by design",
+        "body": "Rather than decoding a fixed set of protocols (NEC, RC5, Sony), the system captures raw mark/space timing. That one decision removes the protocol table entirely — anything that transmits on a 38 kHz carrier can be recorded and replayed, including remotes whose encoding I'd never seen."
+      },
+      {
+        "heading": "Microsecond capture",
+        "body": "Edges are captured with dual-edge input capture on Timer0A, timestamped against a free-running 32-bit counter. The free-running counter is what buys microsecond resolution without drift across a long frame — each edge is an absolute timestamp, not an accumulated delta, so error doesn't compound down the burst."
+      },
+      {
+        "heading": "Carrier generation and gating",
+        "body": "Timer0B drives a 38 kHz PWM carrier. Gating it at runtime is done by reconfiguring the pin between GPIO and alternate-function mode — the timer keeps running while the pin decides whether the world hears it. SysTick-based gap detection marks IR frame boundaries so a burst is correctly segmented into a replayable frame."
+      },
+      {
+        "heading": "Analog front end",
+        "body": "The IR emitter is driven through a 2N3904 transistor, since the GPIO pin alone can't source the LED current needed for usable range. Reception uses a demodulating IR receiver, which strips the carrier and hands back clean logic-level mark/space edges."
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Sudippaudel01"
+      }
+    ]
+  },
+  {
+    "slug": "ieee-754-floating-point-adder",
+    "title": "IEEE 754 Half-Precision Floating-Point Adder",
+    "subtitle": "Intel MAX 10 FPGA",
+    "category": "FPGA / RTL",
+    "context": "Digital Logic II, UTA",
+    "year": "2025",
+    "updated": "2026-08-12",
+    "featured": true,
+    "summary": "A 16-bit IEEE 754 floating-point adder/subtractor designed and synthesized in SystemVerilog, wrapped in a complete keypad-to-display user-facing system.",
+    "cover": "/projects/ieee-754-floating-point-adder.png",
+    "coverAlt": "FP16 bit-field layout above the add datapath, normalization shifter marked as the critical path",
+    "stack": [
+      "SystemVerilog",
+      "Intel Quartus Prime",
+      "Static timing analysis"
+    ],
+    "metrics": [
+      {
+        "label": "Logic elements",
+        "value": "706"
+      },
+      {
+        "label": "Registers",
+        "value": "137"
+      },
+      {
+        "label": "Format",
+        "value": "FP16"
+      },
+      {
+        "label": "Keypad",
+        "value": "4×4"
+      }
+    ],
+    "highlights": [
+      "Implemented operand magnitude ordering, exponent-difference mantissa alignment, sign-aware add/subtract, normalization, and overflow/underflow flags.",
+      "Built the full user-facing system: 4×4 matrix keypad scanner with FSM debounce, edge-detected operand capture, and a time-multiplexed 7-segment driver.",
+      "Identified the unrolled normalization shifter as the critical path from static timing results, with pipelining as the route to closure."
+    ],
+    "sections": [
+      {
+        "heading": "The datapath",
+        "body": "Floating-point addition is mostly bookkeeping around a single integer add. Operands are ordered by magnitude so the smaller exponent is always the one shifted; the mantissa is aligned by the exponent difference; the add or subtract is selected by comparing signs; and the result is normalized back into IEEE 754 form with overflow and underflow flagged at the boundaries."
+      },
+      {
+        "heading": "A full system, not just a block",
+        "body": "The adder is wrapped in everything needed to actually use it on the board. A 4×4 matrix keypad is scanned with an FSM that debounces mechanical bounce and decodes hex; edge detection captures each operand exactly once per press; and a time-multiplexed driver scans the 7-segment displays fast enough to look continuous."
+      },
+      {
+        "heading": "Timing analysis",
+        "body": "Synthesis landed at 706 logic elements and 137 registers. Reading the static timing report, the critical path is the unrolled normalization shifter — an unavoidable consequence of doing a variable-length shift combinationally in a single cycle. Pipelining that shifter is the clear route to timing closure, trading one cycle of latency for a substantially higher fmax."
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Sudippaudel01"
+      }
+    ]
+  },
+  {
+    "slug": "antarlens",
+    "title": "AntarLens",
+    "subtitle": "AI Cognitive Health Platform",
+    "category": "Full-Stack",
+    "context": "antarlens.com",
+    "year": "2025",
+    "updated": "2026-08-12",
+    "featured": true,
+    "summary": "A deployed full-stack AI platform that tracks focus, mood, energy and sleep, then predicts a user's cognitive patterns from their own data via a 30-second daily check-in.",
+    "cover": "/projects/antarlens.png",
+    "coverAlt": "Four tracked cognitive signals plotted over time beside a 30-second check-in ring",
+    "stack": [
+      "Next.js",
+      "React",
+      "Supabase (Postgres, RLS)",
+      "OpenAI API",
+      "Vercel"
+    ],
+    "metrics": [
+      {
+        "label": "Check-in",
+        "value": "30 sec"
+      },
+      {
+        "label": "Signals",
+        "value": "4"
+      },
+      {
+        "label": "Isolation",
+        "value": "RLS"
+      },
+      {
+        "label": "Status",
+        "value": "Live"
+      }
+    ],
+    "highlights": [
+      "Architected the data model and auth on Supabase row-level security, isolating user records at the database layer.",
+      "Built a privacy-first design with encryption at rest and full user memory controls.",
+      "Predicts cognitive patterns from a user's own history rather than population averages."
+    ],
+    "sections": [
+      {
+        "heading": "Security at the database layer",
+        "body": "Auth and the data model were designed together around Supabase row-level security. User isolation is enforced by Postgres policies rather than by application code — so a bug in a route handler can't leak another user's rows, because the query itself is scoped before it ever returns."
+      },
+      {
+        "heading": "Privacy as a product decision",
+        "body": "Cognitive health data is about as sensitive as personal data gets. The platform encrypts at rest and gives users full control over their stored memory — including the ability to inspect and delete what the system retains about them."
+      },
+      {
+        "heading": "Low-friction input, personal baseline",
+        "body": "The entire input surface is a 30-second daily check-in, because adherence is the real constraint on any self-tracking product. Predictions are drawn from each user's own accumulated history, so the baseline is personal rather than a population average that may not describe them at all."
+      }
+    ],
+    "links": [
+      {
+        "label": "Live site",
+        "url": "https://antarlens.com"
+      }
+    ]
+  },
+  {
+    "slug": "kashlly",
+    "title": "Kashlly",
+    "subtitle": "AI Financial Management Platform",
+    "category": "Full-Stack",
+    "context": "kashlly.com",
+    "year": "2025",
+    "updated": "2026-08-12",
+    "featured": false,
+    "summary": "A deployed AI financial tool for freelancers covering cash flow, invoicing and runway forecasting — including a real-time runway calculator that turns financial data into plain-English guidance.",
+    "cover": "/projects/kashlly.png",
+    "coverAlt": "Cash balance declining toward a runway marker, with invoice follow-up statuses",
+    "stack": [
+      "Next.js",
+      "React",
+      "Supabase",
+      "OpenAI API",
+      "Vercel"
+    ],
+    "metrics": [
+      {
+        "label": "Runway calc",
+        "value": "Real-time"
+      },
+      {
+        "label": "Invoicing",
+        "value": "Automated"
+      },
+      {
+        "label": "Audience",
+        "value": "Freelancers"
+      },
+      {
+        "label": "Status",
+        "value": "Live"
+      }
+    ],
+    "highlights": [
+      "Built a real-time runway calculator that converts raw financial data into plain-English guidance.",
+      "Developed an AI pricing advisor that derives recommended rates from real expense data.",
+      "Automated invoice follow-up that drafts and sends reminder emails on overdue invoices."
+    ],
+    "sections": [
+      {
+        "heading": "Runway in plain English",
+        "body": "Freelance finances fail on interpretation, not arithmetic. The runway calculator updates in real time as figures change and states the outcome in plain language — how long the money lasts and what moves it — instead of leaving a number on screen for the user to interpret."
+      },
+      {
+        "heading": "Pricing grounded in real numbers",
+        "body": "The AI pricing advisor derives recommended rates from the user's actual expense data rather than generic benchmarks, so the floor it suggests reflects what that specific freelancer needs to cover."
+      },
+      {
+        "heading": "Chasing invoices automatically",
+        "body": "Overdue invoices trigger automated follow-up: the system drafts and sends reminder emails without the user having to write the awkward message themselves — removing the social friction that causes freelancers to delay chasing payment."
+      }
+    ],
+    "links": [
+      {
+        "label": "Live site",
+        "url": "https://kashlly.com"
+      }
+    ]
+  },
+  {
+    "slug": "network-security-project",
+    "title": "Network Security Project",
+    "subtitle": "Group Lead",
+    "category": "Security",
+    "context": "UTA",
+    "year": "2024",
+    "updated": "2026-08-12",
+    "featured": false,
+    "summary": "Led a team designing and presenting a network security solution, coordinating task assignments and deadlines through to faculty recognition for the team's contribution.",
+    "cover": "/projects/network-security-project.png",
+    "coverAlt": "Network topology split by a filtering boundary into untrusted and segmented zones",
+    "stack": [
+      "Network security",
+      "Threat modeling",
+      "Team leadership"
+    ],
+    "metrics": [
+      {
+        "label": "Role",
+        "value": "Group Lead"
+      },
+      {
+        "label": "Outcome",
+        "value": "Recognized"
+      }
+    ],
+    "highlights": [
+      "Led the team through design and final presentation of a network security solution.",
+      "Coordinated task assignments and deadlines across the group.",
+      "Received faculty recognition for the team's contribution."
+    ],
+    "sections": [
+      {
+        "heading": "Leading the design",
+        "body": "As group lead I owned both the technical direction of the security solution and the schedule that got it delivered — breaking the design into assignable pieces, setting internal deadlines ahead of the real one, and keeping the final presentation coherent across contributors."
+      },
+      {
+        "heading": "Recognition",
+        "body": "The team's work received faculty recognition for its contribution — the practical validation that the design held up under review."
+      }
+    ],
+    "links": []
+  }
+]

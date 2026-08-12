@@ -1,0 +1,229 @@
+{
+  "name": "Sudip Paudel",
+  "initials": "SP",
+  "role": "Computer Engineer",
+  "tagline": "Embedded Systems / Software / Hardware",
+  "headline": "Bare-metal ARM firmware, IEEE 754 RTL, and two live AI platforms.",
+  "summary": "Computer Engineering student at UT Arlington working across the stack — from bare-metal ARM firmware and FPGA RTL to deployed full-stack web apps. Experience writing register-level drivers, designing IEEE 754 arithmetic in SystemVerilog, and shipping two live AI platforms.",
+  "availability": "Available Summer 2026",
+  "location": "Euless, TX",
+  "email": "paudelsudip93@gmail.com",
+  "phone": "+1 (817) 661-9394",
+  "resumeUrl": "/Sudip_Paudel_Resume.pdf",
+  "portraitUrl": "/portrait-placeholder.png",
+  "about": [
+    "I build things that sit on both sides of the hardware/software line. On the metal side that means register-level drivers with no vendor HAL — configuring clocks, timers, NVIC and UART directly out of the datasheet — and synthesizable SystemVerilog on FPGA, where a design isn't done until static timing says it is.",
+    "On the software side it means shipping. I've designed, built and deployed two production AI platforms end to end: data model and row-level-security auth, the product surface, and the deploy pipeline. Same instinct in both worlds — understand the layer underneath instead of trusting the abstraction.",
+    "I'm finishing my B.E. in Computer Engineering at UT Arlington (May 2027) and looking for a Summer 2026 engineering internship where I can work close to the hardware, the systems, or both."
+  ],
+  "stats": [
+    {
+      "label": "Logic elements synthesized",
+      "value": "706"
+    },
+    {
+      "label": "IR carrier generated",
+      "value": "38 kHz"
+    },
+    {
+      "label": "Platforms deployed live",
+      "value": "2"
+    },
+    {
+      "label": "Graduating",
+      "value": "May 2027"
+    }
+  ],
+  "skillGroups": [
+    {
+      "group": "Languages",
+      "note": "Primary development languages",
+      "items": [
+        {
+          "name": "C",
+          "level": 5
+        },
+        {
+          "name": "C++",
+          "level": 4
+        },
+        {
+          "name": "SystemVerilog",
+          "level": 4
+        },
+        {
+          "name": "Assembly (ARM)",
+          "level": 4
+        },
+        {
+          "name": "Java",
+          "level": 3
+        },
+        {
+          "name": "JavaScript / TypeScript",
+          "level": 4
+        },
+        {
+          "name": "SQL",
+          "level": 3
+        },
+        {
+          "name": "HTML / CSS",
+          "level": 4
+        }
+      ]
+    },
+    {
+      "group": "Embedded / Hardware",
+      "note": "Silicon, signals and the layer below the OS",
+      "items": [
+        {
+          "name": "ARM Cortex-M4 (TM4C123)",
+          "level": 5
+        },
+        {
+          "name": "Register-level drivers",
+          "level": 5
+        },
+        {
+          "name": "Timers & input capture",
+          "level": 4
+        },
+        {
+          "name": "PWM / UART / NVIC",
+          "level": 4
+        },
+        {
+          "name": "Intel MAX 10 FPGA",
+          "level": 4
+        },
+        {
+          "name": "Static timing analysis",
+          "level": 3
+        },
+        {
+          "name": "Raspberry Pi / Embedded Linux",
+          "level": 4
+        }
+      ]
+    },
+    {
+      "group": "Tools & Platforms",
+      "note": "Toolchains, frameworks and infrastructure",
+      "items": [
+        {
+          "name": "TI Code Composer Studio",
+          "level": 4
+        },
+        {
+          "name": "Intel Quartus Prime",
+          "level": 4
+        },
+        {
+          "name": "Git / Linux",
+          "level": 5
+        },
+        {
+          "name": "Next.js / React",
+          "level": 4
+        },
+        {
+          "name": "Node.js",
+          "level": 4
+        },
+        {
+          "name": "Supabase (Postgres, RLS)",
+          "level": 4
+        },
+        {
+          "name": "OpenAI API",
+          "level": 4
+        },
+        {
+          "name": "Vercel",
+          "level": 4
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Texas at Arlington",
+      "degree": "B.E., Computer Engineering",
+      "location": "Arlington, TX",
+      "period": "Expected May 2027",
+      "current": true,
+      "coursework": [
+        "Digital Logic",
+        "Embedded Systems",
+        "Computer Architecture",
+        "Operating Systems",
+        "Electronics & Circuit Analysis",
+        "C Programming"
+      ]
+    },
+    {
+      "school": "Dallas College",
+      "degree": "Associate of Science",
+      "location": "Dallas, TX",
+      "period": "May 2024",
+      "current": false,
+      "coursework": []
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Google AI Essentials",
+      "issuer": "Google"
+    },
+    {
+      "name": "Ethical Hacking",
+      "issuer": "Udemy"
+    }
+  ],
+  "languages": [
+    "English",
+    "Nepali",
+    "Hindi"
+  ],
+  "workAuthorization": "Authorized to work in the U.S.",
+  "social": [
+    {
+      "label": "GitHub",
+      "handle": "Sudippaudel01",
+      "url": "https://github.com/Sudippaudel01"
+    },
+    {
+      "label": "LinkedIn",
+      "handle": "sudippaudel01",
+      "url": "https://linkedin.com/in/sudippaudel01"
+    },
+    {
+      "label": "AntarLens",
+      "handle": "antarlens.com",
+      "url": "https://antarlens.com"
+    },
+    {
+      "label": "Kashlly",
+      "handle": "kashlly.com",
+      "url": "https://kashlly.com"
+    }
+  ],
+  "seo": {
+    "siteUrl": "https://sudippaudel.com",
+    "contentUpdated": "2026-08-12",
+    "title": "Sudip Paudel — Computer Engineer",
+    "description": "Computer Engineer working across bare-metal ARM firmware, FPGA RTL design, and full-stack AI platforms. UT Arlington, B.E. Computer Engineering 2027.",
+    "keywords": [
+      "Sudip Paudel",
+      "Computer Engineer",
+      "Embedded Systems",
+      "ARM Cortex-M4",
+      "FPGA",
+      "SystemVerilog",
+      "Full-Stack Developer",
+      "UT Arlington"
+    ],
+    "ogImage": "/og-image.png"
+  }
+}
