@@ -5,10 +5,28 @@ import { profile } from "@/lib/data";
 
 export const runtime = "nodejs";
 
+/**
+ * Strip CR/LF from any value that ends up in an email header.
+ * A newline in a header value lets an attacker append their own headers
+ * (Bcc:, Reply-To:, …) and turn the form into an open relay.
+ */
+const noHeaderInjection = (value: string) => !/[\r\n]/.test(value);
+
+const singleLine = z
+  .string()
+  .trim()
+  .refine(noHeaderInjection, "Line breaks are not allowed in this field.");
+
 const ContactSchema = z.object({
-  name: z.string().trim().min(2, "Please enter your name.").max(100),
-  email: z.string().trim().email("Please enter a valid email address.").max(200),
-  subject: z.string().trim().min(3, "Please add a subject.").max(150),
+  name: singleLine.pipe(z.string().min(2, "Please enter your name.").max(100)),
+  email: z
+    .string()
+    .trim()
+    .refine(noHeaderInjection, "Line breaks are not allowed in this field.")
+    .pipe(z.string().email("Please enter a valid email address.").max(200)),
+  subject: singleLine.pipe(
+    z.string().min(3, "Please add a subject.").max(150),
+  ),
   message: z
     .string()
     .trim()
@@ -54,11 +72,38 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
+/**
+ * Resolve the client IP for rate limiting.
+ *
+ * `x-forwarded-for` is a client-supplied header that the proxy appends to, so
+ * the *first* entry is attacker-controlled — reading it lets anyone rotate a
+ * fake IP per request and bypass the limit entirely. `x-real-ip` is set by the
+ * Vercel edge and is not client-writable; failing that, the last XFF entry is
+ * the one our own proxy appended.
+ */
+function clientIp(request: Request): string {
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    const parts = forwarded.split(",").map((p) => p.trim()).filter(Boolean);
+    if (parts.length > 0) return parts[parts.length - 1];
+  }
+
+  return "unknown";
+}
+
+/** Reject oversized bodies before spending memory parsing them. */
+const MAX_BODY_BYTES = 16 * 1024;
+
 export async function POST(request: Request) {
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    "unknown";
+  const declaredLength = Number(request.headers.get("content-length") ?? 0);
+  if (declaredLength > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: "Request body too large." }, { status: 413 });
+  }
+
+  const ip = clientIp(request);
 
   if (isRateLimited(ip)) {
     return NextResponse.json(

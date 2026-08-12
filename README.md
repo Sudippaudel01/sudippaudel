@@ -389,6 +389,57 @@ There is **no `twitter:creator`** tag. It needs a real X/Twitter handle; add one
 to `profile.json` as `seo.twitterHandle` and wire it into the `twitter` block in
 `app/layout.tsx` if you want it. Twitter cards work without it.
 
+## Security
+
+The only untrusted input the site accepts is the contact form, so that's where
+the hardening is concentrated.
+
+**`/api/contact`**
+
+| Control | Detail |
+| --- | --- |
+| Schema validation | Zod, with per-field errors returned to the form |
+| Header-injection guard | CR/LF rejected in `name`, `email`, `subject` — a newline in an email header lets an attacker append `Bcc:` and relay spam |
+| Rate limit | 5/hour per IP, keyed off `x-real-ip` (proxy-set) — **not** the first `x-forwarded-for` entry, which is client-controlled and trivially spoofed |
+| Body-size cap | 16 KB, rejected with 413 before parsing |
+| Honeypot | hidden `company` field; a bot that fills it gets a fake success |
+| HTML escaping | all user values escaped before entering the email body |
+| Error responses | generic — no stack traces or internal detail |
+
+**Headers** (set in `next.config.mjs`): `Content-Security-Policy`,
+`Strict-Transport-Security`, `X-Content-Type-Options`, `X-Frame-Options: DENY`,
+`Referrer-Policy`, `Permissions-Policy`, `X-DNS-Prefetch-Control`.
+`x-powered-by` is disabled.
+
+The CSP is `default-src 'self'` with no external origins — every font and image
+is local. It does allow `'unsafe-inline'` for scripts and styles, because Next
+injects inline hydration payloads and a nonce cannot be applied to statically
+prerendered pages. `'unsafe-eval'` is **not** allowed. You will see an
+`EvalError` in the console under `npm run dev` — that is Next's hot-reload
+machinery, and it does not occur in a production build. Do not add
+`'unsafe-eval'` to silence it.
+
+**Structured data** is serialised through `components/JsonLd.tsx`, which escapes
+`<`, `>`, `&` and U+2028/9. Plain `JSON.stringify` does not, so a literal
+`</script>` in any content field would otherwise break out of the tag.
+
+### Keeping dependencies patched
+
+```bash
+npm audit
+```
+
+Next.js ships security patches frequently. Stay current within your major:
+
+```bash
+npm install next@latest-14 eslint-config-next@latest-14
+```
+
+`npm audit` will report advisories against Next that are only marked fixed in a
+much later major. Read them before reacting — most require middleware, Server
+Actions, i18n, custom servers, or remote image patterns, **none of which this
+site uses.** Assess actual exposure rather than upgrading majors reflexively.
+
 ## Design system
 
 | Token | Hex | Usage |

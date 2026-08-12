@@ -13,13 +13,44 @@ const nextConfig = {
   },
 
   async headers() {
+    /**
+     * The site loads no third-party resources at all — fonts are self-hosted
+     * by next/font and every image is local — so everything can be locked to
+     * 'self'.
+     *
+     * 'unsafe-inline' is required for scripts and styles because Next injects
+     * inline hydration payloads and style tags, and a nonce cannot be applied
+     * to statically prerendered pages. The policy still blocks the attacks
+     * that matter here: loading script from another origin, framing, plugin
+     * embeds, <base> hijacking, and posting the form anywhere but this site.
+     */
+    const csp = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob:",
+      "font-src 'self' data:",
+      "connect-src 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'none'",
+      "base-uri 'self'",
+      "object-src 'none'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+
     return [
       {
         source: "/:path*",
         headers: [
+          { key: "Content-Security-Policy", value: csp },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Frame-Options", value: "DENY" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-DNS-Prefetch-Control", value: "off" },
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
