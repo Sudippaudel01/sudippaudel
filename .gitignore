@@ -36,3 +36,6 @@ yarn-error.log*
 
 # source resume (the exported PDF in /public is what the site serves)
 *.docx
+
+# working notes, not part of the site
+MY-NOTES.md
