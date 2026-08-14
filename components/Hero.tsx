@@ -35,9 +35,9 @@ export default function Hero() {
           <Link href="/projects" className="btn-primary">
             See the work
           </Link>
-          <Link href="/#contact" className="btn-ghost">
+          <a href="/#contact" className="btn-ghost">
             Get in touch
-          </Link>
+          </a>
           <a
             href={profile.resumeUrl}
             target="_blank"

@@ -187,9 +187,9 @@ export default function ProjectDetailPage({ params }: Params) {
         className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
         aria-label="Project navigation"
       >
-        <Link href="/#contact" className="text-sm text-muted transition-colors hover:text-signal">
+        <a href="/#contact" className="text-sm text-muted transition-colors hover:text-signal">
           Get in touch
-        </Link>
+        </a>
         <Link
           href={`/projects/${next.slug}`}
           className="text-sm text-ink transition-colors hover:text-signal"

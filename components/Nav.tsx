@@ -11,6 +11,18 @@ const LINKS = [
   { href: "/#contact", label: "Contact" },
 ];
 
+/**
+ * Section links are plain anchors, not next/link.
+ *
+ * A Link would run the client router on click, push `/#about` into history,
+ * and then race the handler in HashLinks that strips the fragment back off —
+ * the router won, so the hash stayed in the address bar. An in-page jump
+ * needs no routing, so there is nothing to race.
+ */
+function isHashLink(href: string) {
+  return href.startsWith("/#");
+}
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -21,6 +33,9 @@ export default function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const linkClass =
+    "text-sm text-muted transition-colors hover:text-ink";
 
   return (
     <header
@@ -43,12 +58,15 @@ export default function Nav() {
         <ul className="hidden items-center gap-8 md:flex">
           {LINKS.map((l) => (
             <li key={l.href}>
-              <Link
-                href={l.href}
-                className="text-sm text-muted transition-colors hover:text-ink"
-              >
-                {l.label}
-              </Link>
+              {isHashLink(l.href) ? (
+                <a href={l.href} className={linkClass}>
+                  {l.label}
+                </a>
+              ) : (
+                <Link href={l.href} className={linkClass}>
+                  {l.label}
+                </Link>
+              )}
             </li>
           ))}
           <li>
@@ -56,7 +74,7 @@ export default function Nav() {
               href={profile.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-muted transition-colors hover:text-ink"
+              className={linkClass}
             >
               Résumé
             </a>
@@ -86,17 +104,38 @@ export default function Nav() {
 
       {open ? (
         <ul id="menu" className="border-t border-rule bg-raised px-6 py-2 md:hidden">
-          {[...LINKS, { href: profile.resumeUrl, label: "Résumé" }].map((l) => (
+          {LINKS.map((l) => (
             <li key={l.href} className="border-b border-rule last:border-0">
-              <Link
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="block py-3 text-sm text-muted transition-colors hover:text-ink"
-              >
-                {l.label}
-              </Link>
+              {isHashLink(l.href) ? (
+                <a
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-sm text-muted transition-colors hover:text-ink"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-sm text-muted transition-colors hover:text-ink"
+                >
+                  {l.label}
+                </Link>
+              )}
             </li>
           ))}
+          <li className="border-b border-rule last:border-0">
+            <a
+              href={profile.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="block py-3 text-sm text-muted transition-colors hover:text-ink"
+            >
+              Résumé
+            </a>
+          </li>
         </ul>
       ) : null}
     </header>

@@ -84,7 +84,13 @@ export default function HashLinks() {
       cleanUrl();
     };
 
-    document.addEventListener("click", onClick);
+    /*
+     * Capture phase, so this runs before React's delegated handlers at the
+     * app root. Bubble-phase ran *after* next/link had already pushed the
+     * fragment into history, and the router then re-applied it after our
+     * cleanup — the hash stayed in the bar. Capturing means we decide first.
+     */
+    document.addEventListener("click", onClick, true);
 
     // Arriving on a deep link (someone shared /#contact): let the browser do
     // its native jump, then tidy the bar once we've settled there.
@@ -94,7 +100,7 @@ export default function HashLinks() {
     }
 
     return () => {
-      document.removeEventListener("click", onClick);
+      document.removeEventListener("click", onClick, true);
       if (settle) window.clearTimeout(settle);
     };
   }, []);
