@@ -3,6 +3,7 @@ import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import HashLinks from "@/components/HashLinks";
 import { profile, siteUrl } from "@/lib/data";
 import "./globals.css";
 
@@ -133,6 +134,7 @@ export default function RootLayout({
           Skip to content
         </a>
 
+        <HashLinks />
         <Nav />
         <main id="main">{children}</main>
         <Footer />
