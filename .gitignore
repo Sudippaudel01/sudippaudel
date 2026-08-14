@@ -39,3 +39,6 @@ yarn-error.log*
 
 # working notes, not part of the site
 MY-NOTES.md
+
+# source photos (the processed crop in /public is what ships)
+/20260516_*.jpg

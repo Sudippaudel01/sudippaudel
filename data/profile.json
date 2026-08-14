@@ -10,7 +10,7 @@
   "email": "paudelsudip93@gmail.com",
   "phone": "+1 (817) 661-9394",
   "resumeUrl": "/Sudip_Paudel_Resume.pdf",
-  "portraitUrl": "/portrait-placeholder.png",
+  "portraitUrl": "/portrait.jpg",
   "about": [
     "I build things that sit on both sides of the hardware/software line. On the metal side that means register-level drivers with no vendor HAL — configuring clocks, timers, NVIC and UART directly out of the datasheet — and synthesizable SystemVerilog on FPGA, where a design isn't done until static timing says it is.",
     "On the software side it means shipping. I've designed, built and deployed two production AI platforms end to end: data model and row-level-security auth, the product surface, and the deploy pipeline. Same instinct in both worlds — understand the layer underneath instead of trusting the abstraction.",
