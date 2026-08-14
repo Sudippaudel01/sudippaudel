@@ -11,7 +11,7 @@ export default function About() {
         srTitle="About Sudip Paudel, computer engineer"
       />
 
-      <div className="grid gap-12 lg:grid-cols-[1fr_18rem] lg:gap-16">
+      <div className="grid items-start gap-12 lg:grid-cols-[1fr_18rem] lg:gap-16">
         <div className="space-y-6">
           {profile.about.map((para, i) => (
             <p key={i} className="max-w-measure text-lg leading-relaxed text-muted">
@@ -20,7 +20,8 @@ export default function About() {
           ))}
         </div>
 
-        <aside>
+        {/* Sticky on wide screens: the facts stay with you while you read. */}
+        <aside className="lg:sticky lg:top-24">
           {/* Monochrome by CSS, so any photo reads as identity not stock. */}
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-raised">
             <Image

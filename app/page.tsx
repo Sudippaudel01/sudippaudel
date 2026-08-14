@@ -59,35 +59,37 @@ export default function HomePage() {
       <Hero />
 
       {/* Work first. The reader decides in seconds; don't spend them on a bio. */}
-      <section id="work" className="scroll-mt-24 pt-28">
-        <SectionHeading
-          label="Selected work"
-          title="What I've built"
-          srTitle="Engineering projects: embedded firmware, FPGA RTL, full-stack"
-        />
-        <WorkIndex projects={featuredProjects} />
+      <div className="reveal scroll-mt-24 pt-24">
+        <section id="work">
+          <SectionHeading
+            label="Selected work"
+            title="What I've built"
+            srTitle="Engineering projects: embedded firmware, FPGA RTL, full-stack"
+          />
+          <WorkIndex projects={featuredProjects} />
 
-        <Link
-          href="/projects"
-          className="mt-8 inline-block text-sm text-muted transition-colors hover:text-signal"
-        >
-          All {projects.length} projects →
-        </Link>
-      </section>
+          <Link
+            href="/projects"
+            className="link-quiet mt-8 inline-block text-sm text-muted"
+          >
+            All {projects.length} projects →
+          </Link>
+        </section>
+      </div>
 
-      <div className="pt-28">
+      <div className="reveal pt-28">
         <About />
       </div>
 
-      <div className="pt-28">
+      <div className="reveal pt-28">
         <Skills />
       </div>
 
-      <div className="pt-28">
+      <div className="reveal pt-28">
         <Education />
       </div>
 
-      <div className="pt-28 pb-8">
+      <div className="reveal pb-8 pt-28">
         <Contact />
       </div>
     </div>
