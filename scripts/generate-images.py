@@ -26,12 +26,13 @@ PROJ = PUB / "projects"
 PROJ.mkdir(parents=True, exist_ok=True)
 
 # --- palette (keep in sync with tailwind.config.ts) -------------------------
-BG = "#0a0d0c"
-PANEL = "#151a18"
-COPPER = "#c9884f"
-BRIGHT = "#e0a868"
-SILK = "#e8e6df"
-MINT = "#8b9d95"
+# Instrument: graphite ground, silkscreen type, one muted signal colour.
+BG = "#16181a"
+PANEL = "#1d2023"
+COPPER = "#5b9dba"     # signal
+BRIGHT = "#7cb8d1"     # signal-bright
+SILK = "#e8eae7"       # ink
+MINT = "#878d93"       # muted
 
 MONO = "DejaVu Sans Mono, monospace"
 
@@ -449,6 +450,5 @@ if __name__ == "__main__":
     antarlens()
     kashlly()
     netsec()
-    hero_board()
     portrait()
     print("Done.")

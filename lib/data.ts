@@ -1,16 +1,11 @@
 import profileJson from "@/data/profile.json";
 import projectsJson from "@/data/projects.json";
 
-export type Skill = {
-  name: string;
-  /** Proficiency 1–5, rendered as filled/unfilled pinout dots. */
-  level: number;
-};
-
 export type SkillGroup = {
   group: string;
   note: string;
-  items: Skill[];
+  /** Plain names. No self-assessed ratings — a list is a list. */
+  items: string[];
 };
 
 export type Education = {

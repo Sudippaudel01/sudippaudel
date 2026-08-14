@@ -4,86 +4,86 @@
 
 @layer base {
   :root {
-    --pcb: #0a0d0c;
-    --panel: #151a18;
-    --copper: #c9884f;
-    --copper-bright: #e0a868;
-    --silk: #e8e6df;
-    --mint: #8b9d95;
+    --ground: #16181a;
+    --raised: #1d2023;
+    --ink: #e8eae7;
+    --muted: #878d93;
+    --rule: #2e3236;
+    --signal: #5b9dba;
   }
 
   html {
     scroll-behavior: smooth;
-    /* Keep anchored sections clear of the sticky header. */
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 5rem;
   }
 
   body {
-    @apply bg-pcb text-silk font-sans antialiased;
+    @apply bg-ground text-ink font-sans antialiased;
+    font-feature-settings: "kern" 1;
   }
 
   ::selection {
-    background-color: var(--copper);
-    color: var(--pcb);
+    background-color: var(--signal);
+    color: var(--ground);
   }
 
-  /* Visible keyboard focus everywhere, without a mouse-click focus ring. */
   :focus-visible {
-    outline: 2px solid var(--copper-bright);
+    outline: 2px solid var(--signal);
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
   h1,
   h2,
-  h3,
-  h4 {
-    @apply font-mono tracking-tight;
+  h3 {
+    @apply tracking-tight;
+    text-wrap: balance;
+  }
+
+  /* Digits line up in every table on the site. */
+  table,
+  time,
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
 @layer components {
-  /* Section eyebrow: mono, uppercase, copper — the silkscreen label. */
-  .eyebrow {
-    @apply font-mono text-xs uppercase tracking-[0.25em] text-copper;
+  /* Panel label — the silkscreen text on an instrument face. */
+  .label {
+    @apply font-mono text-label uppercase text-muted;
   }
 
-  /* PCB solder pad: copper ring with a drilled centre. */
-  .pad {
-    @apply block shrink-0 rounded-full border-2 border-copper bg-pcb;
-  }
-
-  /* Panel surface — the secondary board layer. */
-  .panel {
-    @apply border border-copper/20 bg-panel;
-  }
-
-  /* Silkscreen grid, used behind the contact section. */
-  .silkscreen-grid {
-    background-image:
-      linear-gradient(to right, rgba(139, 157, 149, 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(139, 157, 149, 0.1) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-
-  /* Copper trace running along an edge. */
-  .trace-line {
-    @apply bg-gradient-to-r from-transparent via-copper/50 to-transparent;
+  /* Hairline. The only divider on the site. */
+  .hairline {
+    @apply h-px w-full bg-rule;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 border px-6 py-3 font-mono text-sm
-      uppercase tracking-[0.15em] transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 border px-5 py-2.5
+      text-sm transition-colors duration-150;
   }
 
   .btn-primary {
-    @apply btn border-copper bg-copper text-pcb hover:border-copper-bright
-      hover:bg-copper-bright hover:-translate-y-0.5;
+    @apply btn border-ink bg-ink text-ground hover:border-signal hover:bg-signal;
   }
 
-  .btn-secondary {
-    @apply btn border-copper/40 bg-transparent text-silk hover:border-copper
-      hover:text-copper-bright hover:-translate-y-0.5;
+  .btn-ghost {
+    @apply btn border-rule-bright text-ink hover:border-signal hover:text-signal-bright;
+  }
+
+  /* Index rows — the dense scannable list that replaces project cards. */
+  .row-link {
+    @apply grid items-baseline gap-x-6 gap-y-1 border-b border-rule py-5
+      transition-colors duration-150;
+  }
+
+  .row-link:hover {
+    @apply border-rule-bright;
+  }
+
+  /* Portrait: monochrome so it reads as identity, not stock photography. */
+  .portrait {
+    filter: grayscale(1) contrast(1.06);
   }
 }
 
@@ -98,12 +98,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  /* Neutralise the hover lift for users who asked for less motion. */
-  .btn-primary:hover,
-  .btn-secondary:hover {
-    transform: none;
   }
 }

@@ -5,50 +5,34 @@ export default function Education() {
   return (
     <section id="education" className="scroll-mt-24">
       <SectionHeading
-        designator="U3"
-        eyebrow="Education"
-        title="Coursework"
-        srTitle="Education — B.E. Computer Engineering, UT Arlington"
+        label="Education"
+        title="Where I studied"
+        srTitle="Education: B.E. Computer Engineering, UT Arlington"
       />
 
-      <ol className="relative space-y-8 border-l border-copper/25 pl-8">
+      <ul>
         {profile.education.map((ed) => (
-          <li key={ed.school} className="relative">
-            {/* Via connecting the entry to the timeline trace. */}
-            <span
-              className={`pad absolute -left-[2.35rem] top-1.5 h-3.5 w-3.5 ${
-                ed.current ? "bg-copper" : ""
-              }`}
-              aria-hidden="true"
-            />
+          <li
+            key={ed.school}
+            className="grid gap-x-8 gap-y-2 border-b border-rule py-6 md:grid-cols-[1fr_12rem]"
+          >
+            <div>
+              <h3 className="text-lg text-ink">{ed.school}</h3>
+              <p className="mt-1 text-sm text-muted">
+                {ed.degree} &middot; {ed.location}
+              </p>
 
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 className="text-xl font-semibold text-silk">{ed.school}</h3>
-              <span className="font-mono text-xs uppercase tracking-[0.15em] text-copper">
-                {ed.period}
-              </span>
+              {ed.coursework.length > 0 ? (
+                <p className="mt-3 max-w-measure text-sm text-muted">
+                  {ed.coursework.join(", ")}
+                </p>
+              ) : null}
             </div>
 
-            <p className="mt-1 text-base text-mint">
-              {ed.degree}
-              <span className="text-mint/60"> &middot; {ed.location}</span>
-            </p>
-
-            {ed.coursework.length > 0 ? (
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {ed.coursework.map((c) => (
-                  <li
-                    key={c}
-                    className="border border-copper/25 px-3 py-1.5 font-mono text-xs text-mint transition-colors hover:border-copper/60 hover:text-copper-bright"
-                  >
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
+            <p className="label md:text-right">{ed.period}</p>
           </li>
         ))}
-      </ol>
+      </ul>
     </section>
   );
 }

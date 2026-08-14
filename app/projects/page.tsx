@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import ProjectCard from "@/components/ProjectCard";
-import TraceDivider from "@/components/TraceDivider";
 import JsonLd from "@/components/JsonLd";
+import WorkIndex from "@/components/WorkIndex";
 import { projects, profile, siteUrl } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Projects",
-  description: `Engineering projects by ${profile.name} — bare-metal ARM firmware, FPGA RTL design, full-stack AI platforms, and network security.`,
+  title: "Work",
+  description: `Engineering projects by ${profile.name}: bare-metal ARM firmware, FPGA RTL design, and full-stack platforms.`,
   alternates: { canonical: "/projects" },
   openGraph: {
-    title: `Projects — ${profile.name}`,
-    description: `Engineering projects by ${profile.name} — embedded firmware, FPGA RTL, and deployed full-stack platforms.`,
+    title: `Work — ${profile.name}`,
+    description: `Engineering projects by ${profile.name}: embedded firmware, FPGA RTL, and deployed platforms.`,
     url: "/projects",
   },
 };
@@ -19,7 +18,7 @@ export default function ProjectsPage() {
   const listSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Projects",
+    name: "Work",
     url: `${siteUrl}/projects`,
     inLanguage: "en",
     about: { "@type": "Person", name: profile.name, url: siteUrl },
@@ -40,36 +39,29 @@ export default function ProjectsPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: "Projects", item: `${siteUrl}/projects` },
+      { "@type": "ListItem", position: 2, name: "Work", item: `${siteUrl}/projects` },
     ],
   };
 
   return (
-    <div className="mx-auto max-w-content px-6 pb-24 pt-20">
+    <div className="mx-auto max-w-page px-6 pb-24 pt-20">
       <JsonLd data={listSchema} />
       <JsonLd data={breadcrumbSchema} />
-      <div className="flex items-center gap-3">
-        <span className="pad h-2.5 w-2.5 animate-trace-pulse" />
-        <span className="eyebrow">Index &middot; {projects.length} entries</span>
-        <span className="h-px flex-1 bg-copper/25" aria-hidden="true" />
-      </div>
 
-      <h1 className="mt-6 text-4xl font-bold uppercase tracking-tight text-silk sm:text-5xl">
-        Projects
+      <p className="label">Work &middot; {projects.length} projects</p>
+      <div className="mt-4 hairline" />
+
+      <h1 className="mt-8 max-w-[18ch] text-[clamp(2.25rem,5vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
+        Firmware, silicon, and things people use.
       </h1>
 
-      <p className="mt-5 max-w-2xl text-lg leading-relaxed text-mint">
-        Everything from register-level firmware on ARM Cortex-M4, through
-        synthesized SystemVerilog on FPGA, to full-stack AI platforms running in
-        production.
+      <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted">
+        Register-level drivers on ARM Cortex-M4, synthesised SystemVerilog on
+        FPGA, and full-stack platforms running in production.
       </p>
 
-      <TraceDivider />
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, i) => (
-          <ProjectCard key={project.slug} project={project} index={i} />
-        ))}
+      <div className="mt-16">
+        <WorkIndex projects={projects} />
       </div>
     </div>
   );

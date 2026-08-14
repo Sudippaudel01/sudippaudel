@@ -38,58 +38,44 @@ export default function Contact() {
       }
 
       setStatus("success");
-      setMessage(data.message ?? "Message sent — I'll get back to you shortly.");
+      setMessage(data.message ?? "Message sent. I'll get back to you shortly.");
       form.reset();
     } catch {
       setStatus("error");
-      setMessage("Network error. Please check your connection and try again.");
+      setMessage("Network error. Check your connection and try again.");
     }
   }
 
   return (
-    <section id="contact" className="relative scroll-mt-24 overflow-hidden">
-      {/* Silkscreen grid, fading out toward the bottom of the board. */}
-      <div
-        className="silkscreen-grid pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_center,black,transparent_78%)]"
-        aria-hidden="true"
-      />
-
+    <section id="contact" className="scroll-mt-24">
       <SectionHeading
-        designator="J1"
-        eyebrow="Contact"
-        title="Hire me"
-        srTitle="Contact Sudip Paudel — hire me for a Summer 2026 engineering internship"
-        intro="Looking for a Summer 2026 engineering internship — embedded, hardware, full-stack, or anywhere the three meet. Send a message and I'll reply."
+        label="Contact"
+        title="Get in touch"
+        srTitle="Contact Sudip Paudel, computer engineer"
+        intro={`Open to engineering work across embedded, hardware and full-stack. Email me directly or use the form.`}
       />
 
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-        {/* Header pinout — the connector's signal list. */}
-        <div className="panel h-fit p-7">
-          <h3 className="eyebrow">Direct lines</h3>
-
-          <dl className="mt-6 space-y-5">
-            <div>
-              <dt className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-mint/70">
-                Email
-              </dt>
-              <dd className="mt-1">
+      <div className="grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-16">
+        <div>
+          <dl className="space-y-5">
+            <div className="border-b border-rule pb-4">
+              <dt className="label">Email</dt>
+              <dd className="mt-1.5">
                 <a
                   href={`mailto:${profile.email}`}
-                  className="break-all text-sm text-silk transition-colors hover:text-copper-bright"
+                  className="break-all text-sm text-ink transition-colors hover:text-signal"
                 >
                   {profile.email}
                 </a>
               </dd>
             </div>
 
-            <div>
-              <dt className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-mint/70">
-                Phone
-              </dt>
-              <dd className="mt-1">
+            <div className="border-b border-rule pb-4">
+              <dt className="label">Phone</dt>
+              <dd className="mt-1.5">
                 <a
                   href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}
-                  className="text-sm text-silk transition-colors hover:text-copper-bright"
+                  className="text-sm text-ink transition-colors hover:text-signal"
                 >
                   {profile.phone}
                 </a>
@@ -97,89 +83,69 @@ export default function Contact() {
             </div>
 
             <div>
-              <dt className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-mint/70">
-                Location
-              </dt>
-              <dd className="mt-1 text-sm text-silk">{profile.location}</dd>
+              <dt className="label">Elsewhere</dt>
+              <dd className="mt-2.5 flex flex-col gap-2">
+                {profile.social.map((s) => (
+                  <a
+                    key={s.url}
+                    href={s.url}
+                    target="_blank"
+                    rel="me noopener noreferrer"
+                    className="text-sm text-muted transition-colors hover:text-ink"
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </dd>
             </div>
           </dl>
-
-          <div className="mt-7 h-px trace-line" aria-hidden="true" />
-
-          <ul className="mt-6 space-y-3">
-            {profile.social.map((s) => (
-              <li key={s.url}>
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="me noopener noreferrer"
-                  className="flex items-center gap-3 font-mono text-sm text-mint transition-colors hover:text-copper-bright"
-                >
-                  <span className="pad h-2 w-2" />
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
 
           <a
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary mt-7 w-full"
+            className="btn-ghost mt-8 w-full"
           >
-            Download Résumé
+            Download résumé
           </a>
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="panel p-7">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field
-              name="name"
-              label="Name"
-              placeholder="Jane Engineer"
-              error={fieldErrors.name}
-              required
-            />
+        <form onSubmit={handleSubmit} noValidate className="relative">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Field name="name" label="Name" error={fieldErrors.name} required />
             <Field
               name="email"
               label="Email"
               type="email"
-              placeholder="jane@company.com"
               error={fieldErrors.email}
               required
             />
           </div>
 
-          <div className="mt-5">
+          <div className="mt-6">
             <Field
               name="subject"
               label="Subject"
-              placeholder="Summer 2026 internship — Firmware"
               error={fieldErrors.subject}
               required
             />
           </div>
 
-          <div className="mt-5">
-            <label
-              htmlFor="message"
-              className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-mint/70"
-            >
-              Message <span className="text-copper">*</span>
+          <div className="mt-6">
+            <label htmlFor="message" className="label">
+              Message
             </label>
             <textarea
               id="message"
               name="message"
               rows={6}
               required
-              placeholder="Tell me about the role or the project…"
               aria-invalid={Boolean(fieldErrors.message)}
               aria-describedby={fieldErrors.message ? "message-error" : undefined}
-              className="mt-2 w-full resize-y border border-copper/25 bg-pcb px-4 py-3 text-sm text-silk placeholder:text-mint/40 transition-colors focus:border-copper focus:outline-none"
+              className="mt-2 w-full resize-y border-0 border-b border-rule bg-transparent px-0 py-2.5 text-ink transition-colors placeholder:text-muted/60 focus:border-signal focus:outline-none focus:ring-0"
             />
             {fieldErrors.message ? (
-              <p id="message-error" className="mt-1.5 font-mono text-xs text-copper-bright">
+              <p id="message-error" className="mt-2 text-sm text-signal-bright">
                 {fieldErrors.message}
               </p>
             ) : null}
@@ -194,22 +160,20 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="btn-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-60"
+            className="btn-primary mt-8 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {status === "loading" ? "Transmitting…" : "Send Message"}
+            {status === "loading" ? "Sending…" : "Send message"}
           </button>
 
-          {/* Live region so screen readers announce the result. */}
           <div aria-live="polite" role="status">
             {status === "success" || status === "error" ? (
               <p
-                className={`mt-5 flex items-start gap-3 border px-4 py-3 text-sm ${
+                className={`mt-6 border-l-2 pl-4 text-sm ${
                   status === "success"
-                    ? "border-copper/50 bg-copper/10 text-silk"
-                    : "border-copper-bright/50 bg-copper-bright/10 text-copper-bright"
+                    ? "border-signal text-ink"
+                    : "border-signal-bright text-signal-bright"
                 }`}
               >
-                <span className="pad mt-1 h-2 w-2" />
                 {message}
               </p>
             ) : null}
@@ -224,37 +188,31 @@ function Field({
   name,
   label,
   type = "text",
-  placeholder,
   error,
   required,
 }: {
   name: string;
   label: string;
   type?: string;
-  placeholder?: string;
   error?: string;
   required?: boolean;
 }) {
   return (
     <div>
-      <label
-        htmlFor={name}
-        className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-mint/70"
-      >
-        {label} {required ? <span className="text-copper">*</span> : null}
+      <label htmlFor={name} className="label">
+        {label}
       </label>
       <input
         id={name}
         name={name}
         type={type}
         required={required}
-        placeholder={placeholder}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="mt-2 w-full border border-copper/25 bg-pcb px-4 py-3 text-sm text-silk placeholder:text-mint/40 transition-colors focus:border-copper focus:outline-none"
+        className="mt-2 w-full border-0 border-b border-rule bg-transparent px-0 py-2.5 text-ink transition-colors focus:border-signal focus:outline-none focus:ring-0"
       />
       {error ? (
-        <p id={`${name}-error`} className="mt-1.5 font-mono text-xs text-copper-bright">
+        <p id={`${name}-error`} className="mt-2 text-sm text-signal-bright">
           {error}
         </p>
       ) : null}

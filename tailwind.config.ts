@@ -9,35 +9,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        pcb: "#0a0d0c",
-        panel: "#151a18",
-        copper: {
-          DEFAULT: "#c9884f",
-          bright: "#e0a868",
+        // Instrument palette — a lab-equipment front panel.
+        // Graphite ground, silkscreen type, one muted signal colour.
+        ground: "#16181a",
+        raised: "#1d2023",
+        ink: "#e8eae7",
+        muted: "#878d93",
+        rule: "#2e3236",
+        "rule-bright": "#40454a",
+        signal: {
+          DEFAULT: "#5b9dba",
+          bright: "#7cb8d1",
         },
-        silk: "#e8e6df",
-        mint: "#8b9d95",
       },
       fontFamily: {
+        sans: ["var(--font-archivo)", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
-        sans: ["var(--font-plex-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       maxWidth: {
-        content: "72rem",
+        page: "70rem",
+        measure: "34rem",
+      },
+      fontSize: {
+        // Panel labels: small, letterspaced, uppercase.
+        label: ["0.6875rem", { lineHeight: "1.4", letterSpacing: "0.16em" }],
       },
       keyframes: {
-        "trace-pulse": {
-          "0%, 100%": { opacity: "0.35" },
-          "50%": { opacity: "1" },
-        },
         "fade-up": {
-          from: { opacity: "0", transform: "translateY(12px)" },
+          from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
-        "trace-pulse": "trace-pulse 4s ease-in-out infinite",
-        "fade-up": "fade-up 0.6s ease-out both",
+        "fade-up": "fade-up 0.5s ease-out both",
       },
     },
   },
