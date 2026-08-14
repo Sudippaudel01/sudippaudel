@@ -59,7 +59,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Work first. The reader decides in seconds; don't spend them on a bio. */}
-      <div className="reveal scroll-mt-24 pt-24">
+      <div className="reveal scroll-mt-24 pt-32">
         <section id="work">
           <SectionHeading
             label="Selected work"
@@ -77,19 +77,19 @@ export default function HomePage() {
         </section>
       </div>
 
-      <div className="reveal pt-28">
+      <div className="reveal pt-36">
         <About />
       </div>
 
-      <div className="reveal pt-28">
+      <div className="reveal pt-32">
         <Skills />
       </div>
 
-      <div className="reveal pt-28">
+      <div className="reveal pt-24">
         <Education />
       </div>
 
-      <div className="reveal pb-8 pt-28">
+      <div className="reveal pb-8 pt-36">
         <Contact />
       </div>
     </div>

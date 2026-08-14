@@ -33,7 +33,7 @@
   "skillGroups": [
     {
       "group": "Languages",
-      "note": "Daily drivers, roughly in order of how much I've written",
+      "note": "Roughly in order of how much I've written",
       "items": [
         "C",
         "C++",
@@ -47,7 +47,7 @@
     },
     {
       "group": "Embedded / Hardware",
-      "note": "Parts, instruments and the layer below the OS",
+      "note": "Parts, instruments, and the layer below the OS",
       "items": [
         "ARM Cortex-M4 (TM4C123)",
         "Register-level drivers",
@@ -60,7 +60,7 @@
     },
     {
       "group": "Tools & Platforms",
-      "note": "Toolchains and infrastructure I work in",
+      "note": "Toolchains and infrastructure",
       "items": [
         "TI Code Composer Studio",
         "Intel Quartus Prime",

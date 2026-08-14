@@ -2,9 +2,13 @@ import Link from "next/link";
 import { profile } from "@/lib/data";
 
 /**
- * The hero is one sentence and nothing else. Elements arrive in sequence on
- * load — label, headline, summary, actions — which reads as considered rather
- * than decorated. The rule at the base is the only graphic element.
+ * The hero is one sentence and nothing else.
+ *
+ * The headline is sized to run close to the full measure rather than sitting
+ * in the left half with dead space beside it — the emptiness at wide viewports
+ * was reading as unfinished rather than as breathing room. The base row then
+ * spans the full width, actions left and orientation right, so the block
+ * closes on a line instead of trailing off.
  */
 export default function Hero() {
   return (
@@ -17,32 +21,44 @@ export default function Hero() {
         <p className="label">{profile.availability}</p>
       </div>
 
-      <h1 className="mt-10 max-w-[15ch] text-[clamp(2.75rem,8vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
+      <h1 className="mt-10 max-w-[13ch] text-[clamp(2.75rem,9vw,6.75rem)] font-semibold leading-[0.92] tracking-[-0.05em]">
         {profile.headline}
       </h1>
 
-      <p className="mt-9 max-w-measure text-lg leading-relaxed text-muted">
+      <p className="mt-10 max-w-measure text-lg leading-relaxed text-muted">
         {profile.summary}
       </p>
 
-      <div className="mt-11 flex flex-wrap items-center gap-x-3 gap-y-4">
-        <Link href="/projects" className="btn-primary">
-          See the work
-        </Link>
-        <Link href="/#contact" className="btn-ghost">
-          Get in touch
-        </Link>
-        <a
-          href={profile.resumeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-quiet ml-1 text-sm text-muted"
-        >
-          Résumé
-        </a>
-      </div>
+      <div className="mt-12 flex flex-col gap-8 border-b border-rule pb-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-4">
+          <Link href="/projects" className="btn-primary">
+            See the work
+          </Link>
+          <Link href="/#contact" className="btn-ghost">
+            Get in touch
+          </Link>
+          <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-quiet ml-1 text-sm text-muted"
+          >
+            Résumé
+          </a>
+        </div>
 
-      <div className="mt-24 hairline" />
+        {/* Orientation, right-aligned — gives the base row something to close on. */}
+        <dl className="flex gap-10 sm:text-right">
+          <div>
+            <dt className="label">Based in</dt>
+            <dd className="mt-1.5 text-sm text-ink">{profile.location}</dd>
+          </div>
+          <div>
+            <dt className="label">Focus</dt>
+            <dd className="mt-1.5 text-sm text-ink">{profile.tagline}</dd>
+          </div>
+        </dl>
+      </div>
     </section>
   );
 }
