@@ -67,22 +67,21 @@ Controls the hero, about, skills, education, footer and all SEO metadata.
 | `resumeUrl` | Nav "Résumé" button + contact download button |
 | `about[]` | About section paragraphs — add or remove freely |
 | `stats[]` | The 4-cell spec strip under the hero |
-| `skillGroups[]` | The pinout tables (see below) |
+| `skillGroups[]` | The capability lists (see below) |
 | `education[]` | Education timeline |
 | `certifications[]`, `languages[]` | About sidebar |
 | `social[]` | Footer and contact links |
 | `seo.*` | `<title>`, meta description, OG/Twitter tags |
 
-**Skills** use a 1–5 proficiency scale rendered as filled/unfilled copper pads:
+**Skills** are plain lists grouped by domain. There are deliberately **no
+self-assessed ratings** — a 4-out-of-5 next to "C" reads as junior and is the
+first thing a designer would cut.
 
 ```json
 {
   "group": "Languages",
-  "note": "Primary development languages",
-  "items": [
-    { "name": "C", "level": 5 },
-    { "name": "SystemVerilog", "level": 4 }
-  ]
+  "note": "Daily drivers, roughly in order of how much I've written",
+  "items": ["C", "C++", "SystemVerilog"]
 }
 ```
 
@@ -442,37 +441,42 @@ site uses.** Assess actual exposure rather than upgrading majors reflexively.
 
 ## Design system
 
+The direction is **Instrument** — the front panel of good test equipment.
+Graphite ground, silkscreen type, hairline rules, one muted signal colour.
+
 | Token | Hex | Usage |
 | --- | --- | --- |
-| `pcb` | `#0a0d0c` | Page background — black solder mask |
-| `panel` | `#151a18` | Cards, nav dropdown, footer |
-| `copper` | `#c9884f` | Traces, pads, borders, primary buttons |
-| `copper-bright` | `#e0a868` | Hover states, focus rings, emphasis |
-| `silk` | `#e8e6df` | Primary text — silkscreen white |
-| `mint` | `#8b9d95` | Secondary/body text |
+| `ground` | `#16181a` | Page background — graphite |
+| `raised` | `#1d2023` | Image wells, mobile menu |
+| `ink` | `#e8eae7` | Primary text — silkscreen off-white |
+| `muted` | `#878d93` | Secondary/body text |
+| `rule` | `#2e3236` | Hairlines — the only divider on the site |
+| `signal` | `#5b9dba` | Links, focus, hover. Used sparingly |
 
-The palette is **black solder mask with ENIG-gold copper**, rather than the more
-common green mask — green is the fab default, black + gold is what premium
-hardware ships in, and it lets the copper accent carry the design.
+**Restraint is the design.** There are no cards, no corner brackets, no
+reference designators, no solder pads and no proficiency dots. A single hairline
+is the only structural device. If you add ornament back, add it once.
 
-To re-theme the whole site, edit these six values in **two places only**:
-`tailwind.config.ts` (`theme.extend.colors`) and the `:root` block in
-`app/globals.css`. Also update `themeColor` in `app/layout.tsx`,
-`public/favicon.svg`, and the inline email styles in `app/api/contact/route.ts`,
-which need literal hex values.
+To re-theme, edit these values in **two places**: `tailwind.config.ts`
+(`theme.extend.colors`) and the `:root` block in `app/globals.css`. Then update
+the literals in `app/layout.tsx` (`themeColor`), `public/favicon.svg`, the email
+styles in `app/api/contact/route.ts`, and the palette constants at the top of
+`scripts/generate-images.py` — then re-run that script so the artwork matches.
 
-**Type:** IBM Plex Mono (headings, labels, eyebrows) + IBM Plex Sans (body),
-loaded via `next/font/google` — self-hosted at build time, no external request.
+**Type:** Archivo carries the whole site, differentiated by weight and tracking
+rather than by swapping families. IBM Plex Mono is reserved for data,
+identifiers and panel labels. Both self-hosted at build time via
+`next/font/google`.
 
-**Motif classes** (in `app/globals.css`): `.pad` (solder pad), `.trace-line`
-(copper trace), `.panel` (board layer), `.silkscreen-grid` (contact background),
-`.eyebrow` (mono uppercase label). Corner brackets come from the `<Corners />`
-component in `components/About.tsx`.
+**Component classes** (`app/globals.css`): `.label` (mono panel label),
+`.hairline`, `.btn-primary` / `.btn-ghost`, `.row-link` (work index rows), and
+`.portrait` (a `grayscale` filter so any photo reads as identity rather than
+stock photography).
 
-**Accessibility:** skip-to-content link, `:focus-visible` copper outlines
-throughout, `aria-live` status on the contact form, labelled proficiency dots,
-and a full `prefers-reduced-motion` block that disables animation, hover lift
-and smooth scroll.
+**Accessibility:** skip-to-content link, `:focus-visible` outlines in the signal
+colour, `aria-live` status on the contact form, screen-reader-only descriptive
+headings via `srTitle`, and a `prefers-reduced-motion` block that disables
+animation and smooth scroll.
 
 ---
 
