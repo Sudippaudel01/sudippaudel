@@ -165,6 +165,23 @@
   }
 
   /*
+   * The hero trace scrolls by exactly one period, so the loop is seamless.
+   * Slow — it should read as an instrument, not a banner.
+   */
+  .signal-trace {
+    animation: trace-scroll 26s linear infinite;
+  }
+
+  @keyframes trace-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(var(--trace-period) * -1));
+    }
+  }
+
+  /*
    * Scroll reveal, CSS-only via a scroll-driven animation.
    *
    * Sections are fully visible by default; the animation is layered on top

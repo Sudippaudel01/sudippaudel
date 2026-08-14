@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignalTrace from "./SignalTrace";
 import { profile } from "@/lib/data";
 
 /**
@@ -29,7 +30,7 @@ export default function Hero() {
         {profile.summary}
       </p>
 
-      <div className="mt-12 flex flex-col gap-8 border-b border-rule pb-10 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mt-12 flex flex-col gap-8 pb-10 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-4">
           <Link href="/projects" className="btn-primary">
             See the work
@@ -59,6 +60,8 @@ export default function Hero() {
           </div>
         </dl>
       </div>
+
+      <SignalTrace />
     </section>
   );
 }

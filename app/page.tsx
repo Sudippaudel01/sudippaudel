@@ -1,6 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import Hero from "@/components/Hero";
+import FeaturedProject from "@/components/FeaturedProject";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Education from "@/components/Education";
@@ -66,7 +67,11 @@ export default function HomePage() {
             title="What I've built"
             srTitle="Engineering projects: embedded firmware, FPGA RTL, full-stack"
           />
-          <WorkIndex projects={featuredProjects} />
+          <FeaturedProject project={featuredProjects[0]} />
+
+          <div className="mt-20">
+            <WorkIndex projects={featuredProjects.slice(1)} />
+          </div>
 
           <Link
             href="/projects"
