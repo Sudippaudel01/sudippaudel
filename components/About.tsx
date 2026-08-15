@@ -22,14 +22,22 @@ export default function About() {
 
         {/* Sticky on wide screens: the facts stay with you while you read. */}
         <aside className="lg:sticky lg:top-24">
-          {/* Monochrome by CSS, so any photo reads as identity not stock. */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden bg-raised">
+          {/*
+            Monochrome so the photo reads as identity rather than stock, and
+            fading out at the base so it settles into the page instead of
+            stopping on a hard edge above the detail list.
+          */}
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
               src={profile.portraitUrl}
               alt={`${profile.name}, ${profile.role}`}
               fill
-              sizes="288px"
+              sizes="(max-width: 1024px) 60vw, 288px"
               className="portrait object-cover"
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ground via-ground/70 to-transparent"
+              aria-hidden="true"
             />
           </div>
 

@@ -91,9 +91,14 @@
     }
   }
 
-  /* Portrait: monochrome so it reads as identity, not stock photography. */
+  /*
+   * Portrait: monochrome so it reads as identity, not stock photography.
+   * Contrast and vignette are baked into the file itself, so this only
+   * guarantees the desaturation — stacking another contrast bump on top
+   * crushed the shadows.
+   */
   .portrait {
-    filter: grayscale(1) contrast(1.06);
+    filter: grayscale(1);
   }
 
   /*
