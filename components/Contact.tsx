@@ -112,11 +112,12 @@ export default function Contact() {
 
         <form onSubmit={handleSubmit} noValidate className="relative">
           <div className="grid gap-6 sm:grid-cols-2">
-            <Field name="name" label="Name" error={fieldErrors.name} required />
+            <Field name="name" label="Name" placeholder="Jane Okafor" error={fieldErrors.name} required />
             <Field
               name="email"
               label="Email"
               type="email"
+              placeholder="jane@company.com"
               error={fieldErrors.email}
               required
             />
@@ -126,6 +127,7 @@ export default function Contact() {
             <Field
               name="subject"
               label="Subject"
+              placeholder="Embedded firmware role"
               error={fieldErrors.subject}
               required
             />
@@ -138,11 +140,12 @@ export default function Contact() {
             <textarea
               id="message"
               name="message"
-              rows={6}
+              rows={5}
               required
+              placeholder="What are you working on?"
               aria-invalid={Boolean(fieldErrors.message)}
               aria-describedby={fieldErrors.message ? "message-error" : undefined}
-              className="mt-2 w-full resize-y border-0 border-b border-rule bg-transparent px-0 py-2.5 text-ink transition-colors placeholder:text-muted/60 focus:border-signal focus:outline-none focus:ring-0"
+              className="mt-2 w-full resize-y border-0 border-b-2 border-rule-bright bg-raised px-3 py-2.5 text-ink transition-colors placeholder:text-muted/50 focus:border-signal focus:outline-none focus:ring-0"
             />
             {fieldErrors.message ? (
               <p id="message-error" className="mt-2 text-sm text-signal-bright">
@@ -188,12 +191,14 @@ function Field({
   name,
   label,
   type = "text",
+  placeholder,
   error,
   required,
 }: {
   name: string;
   label: string;
   type?: string;
+  placeholder?: string;
   error?: string;
   required?: boolean;
 }) {
@@ -207,9 +212,10 @@ function Field({
         name={name}
         type={type}
         required={required}
+        placeholder={placeholder}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="mt-2 w-full border-0 border-b border-rule bg-transparent px-0 py-2.5 text-ink transition-colors focus:border-signal focus:outline-none focus:ring-0"
+        className="mt-2 w-full border-0 border-b-2 border-rule-bright bg-raised px-3 py-2.5 text-ink transition-colors placeholder:text-muted/50 focus:border-signal focus:outline-none focus:ring-0"
       />
       {error ? (
         <p id={`${name}-error`} className="mt-2 text-sm text-signal-bright">
