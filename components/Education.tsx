@@ -2,9 +2,17 @@ import SectionHeading from "./SectionHeading";
 import { profile } from "@/lib/data";
 
 /**
- * The date sits on the same baseline as the school rather than marooned in
- * a far-right column — the wide gap between them was reading as a layout
- * accident rather than as alignment.
+ * Dates sit in their own column with a consistent left edge, and the content
+ * starts at a fixed point beside them.
+ *
+ * Two earlier attempts were worse: the date marooned in a far-right column
+ * (a wide gap that read as a layout accident), then a leader rule bridging
+ * that gap (a table-of-contents device stretched across 700px, which drew
+ * more attention than either the school or the date). Alignment does the job
+ * that the rule was doing, so the rule isn't needed.
+ *
+ * Stacks to a single column on small screens, where a fixed date column
+ * would squeeze the school names.
  */
 export default function Education() {
   return (
@@ -17,22 +25,24 @@ export default function Education() {
 
       <ul>
         {profile.education.map((ed) => (
-          <li key={ed.school} className="border-b border-rule py-6">
-            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <li
+            key={ed.school}
+            className="grid gap-x-10 gap-y-2 border-b border-rule py-7 last:border-0 md:grid-cols-[10rem_1fr]"
+          >
+            <p className="label md:pt-1.5">{ed.period}</p>
+
+            <div>
               <h3 className="text-lg text-ink">{ed.school}</h3>
-              <span className="h-px min-w-8 flex-1 bg-rule" aria-hidden="true" />
-              <span className="label whitespace-nowrap">{ed.period}</span>
-            </div>
-
-            <p className="mt-2 text-sm text-muted">
-              {ed.degree} &middot; {ed.location}
-            </p>
-
-            {ed.coursework.length > 0 ? (
-              <p className="mt-3 max-w-measure text-sm text-muted">
-                {ed.coursework.join(", ")}
+              <p className="mt-1 text-sm text-muted">
+                {ed.degree} &middot; {ed.location}
               </p>
-            ) : null}
+
+              {ed.coursework.length > 0 ? (
+                <p className="mt-3 max-w-measure text-sm leading-relaxed text-muted">
+                  {ed.coursework.join(", ")}
+                </p>
+              ) : null}
+            </div>
           </li>
         ))}
       </ul>
