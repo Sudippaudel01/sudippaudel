@@ -11,6 +11,25 @@ export const metadata: Metadata = {
     title: `Work — ${profile.name}`,
     description: `Engineering projects by ${profile.name}: embedded firmware, FPGA RTL, and deployed platforms.`,
     url: "/projects",
+    /*
+     * Declaring `openGraph` here replaces the parent's object rather than
+     * merging into it, so the inherited image was being dropped and this
+     * page shared with no preview at all. Same for the twitter block below.
+     */
+    images: [
+      {
+        url: profile.seo.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${profile.name} — ${profile.role}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Work — ${profile.name}`,
+    description: `Engineering projects by ${profile.name}: embedded firmware, FPGA RTL, and deployed platforms.`,
+    images: [profile.seo.ogImage],
   },
 };
 

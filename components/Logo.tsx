@@ -39,7 +39,7 @@ export default function Logo({
 }) {
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
-      <LogoMark className="h-5 w-5 shrink-0 text-signal transition-colors" />
+      <LogoMark className="h-6 w-6 shrink-0 text-signal transition-colors" />
       {showName ? (
         <span className="text-sm uppercase tracking-[0.28em]">
           {profile.name}
