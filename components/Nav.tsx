@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 import { profile } from "@/lib/data";
 
 const LINKS = [
@@ -50,9 +51,9 @@ export default function Nav() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="text-sm uppercase tracking-[0.28em] text-ink transition-colors hover:text-signal"
+          className="text-ink transition-colors hover:text-signal"
         >
-          {profile.name}
+          <Logo />
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">

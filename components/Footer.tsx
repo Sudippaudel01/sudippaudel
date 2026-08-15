@@ -1,3 +1,4 @@
+import Logo from "./Logo";
 import { profile } from "@/lib/data";
 
 export default function Footer() {
@@ -5,7 +6,7 @@ export default function Footer() {
     <footer className="mt-24 border-t border-rule">
       <div className="mx-auto flex max-w-page flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.28em]">{profile.name}</p>
+          <Logo className="text-ink" />
           <p className="mt-2 text-sm text-muted">
             {profile.tagline} &middot; {profile.location}
           </p>

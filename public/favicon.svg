@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="SP monogram">
-  <rect width="64" height="64" fill="#16181a"/>
-  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#2e3236" stroke-width="2"/>
-  <circle cx="12" cy="12" r="2.5" fill="#5b9dba"/>
-  <text x="32" y="43" text-anchor="middle" font-family="Archivo, Helvetica, Arial, sans-serif"
-        font-size="30" font-weight="600" fill="#e8eae7" letter-spacing="-1">SP</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Sudip Paudel">
+  <rect width="32" height="32" fill="#16181a"/>
+  <path d="M3 22 H9.5 V10 H16 V22 H20 V15 H29"
+        fill="none" stroke="#e8eae7" stroke-width="2.8"
+        stroke-linecap="square" stroke-linejoin="miter"/>
 </svg>
