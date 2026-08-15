@@ -12,9 +12,10 @@
   "resumeUrl": "/Sudip_Paudel_Resume.pdf",
   "portraitUrl": "/portrait.jpg",
   "about": [
-    "I build things that sit on both sides of the hardware/software line. On the metal side that means register-level drivers with no vendor HAL — configuring clocks, timers, NVIC and UART directly out of the datasheet — and synthesizable SystemVerilog on FPGA, where a design isn't done until static timing says it is.",
-    "On the software side it means shipping. I've designed, built and deployed two production AI platforms end to end: data model and row-level-security auth, the product surface, and the deploy pipeline. Same instinct in both worlds — understand the layer underneath instead of trusting the abstraction.",
-    "I'm studying Computer Engineering at UT Arlington. I'm open to engineering internships and roles where I can work close to the hardware, the systems, or both."
+    "Most of my work happens a layer below where people usually start.",
+    "On the TM4C123 I write the clock, UART, timer and NVIC setup myself, straight out of the datasheet, rather than calling TI's HAL. It takes much longer to get anything working. It also means that when something breaks I know which register I got wrong. FPGA work runs on the same instinct in SystemVerilog: I pay more attention to the timing report than the simulation waveform, because a design can simulate perfectly and still fail to close.",
+    "I write web software too. AntarLens and Kashlly are both live, and I built each one end to end: schema, auth, the product, the deploy. On AntarLens the user isolation lives in Postgres row-level security instead of route handlers, so a bug in my own code can't hand one person's data to somebody else.",
+    "I'm at UT Arlington studying Computer Engineering. Open to internships or roles close to the hardware, the systems, or both."
   ],
   "stats": [
     {
