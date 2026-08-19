@@ -69,15 +69,24 @@ export default function HomePage() {
           />
           <FeaturedProject project={featuredProjects[0]} />
 
+          {/*
+            Every project is linked from here, not just the featured ones.
+            The homepage is the only page with any authority; when the index
+            showed 3 of 5, the other two were reachable only through
+            /projects — which Google crawled and declined to index — so they
+            sat two hops from anything indexed and were never fetched.
+          */}
           <div className="mt-20">
-            <WorkIndex projects={featuredProjects.slice(1)} />
+            <WorkIndex
+              projects={projects.filter((p) => p.slug !== featuredProjects[0].slug)}
+            />
           </div>
 
           <Link
             href="/projects"
             className="link-quiet mt-8 inline-block text-sm text-muted"
           >
-            All {projects.length} projects →
+            Full project index →
           </Link>
         </section>
       </div>
