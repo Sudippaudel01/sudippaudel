@@ -104,6 +104,18 @@ const personSchema = {
     name: c.name,
     recognizedBy: { "@type": "Organization", name: c.issuer },
   })),
+  /*
+   * Several unrelated people share this name — a Harvard researcher, a
+   * pentester, other developers. hasOccupation and the education/skill
+   * fields are what let Google tell one Sudip Paudel from another, which
+   * matters more here than it would for a unique name.
+   */
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Computer Engineer",
+    occupationalCategory: "17-2061.00", // O*NET: Computer Hardware Engineers
+    skills: profile.skillGroups.flatMap((g) => g.items).join(", "),
+  },
   knowsLanguage: profile.languages,
   knowsAbout: profile.skillGroups.flatMap((g) => g.items),
   sameAs: profile.social.map((s) => s.url),

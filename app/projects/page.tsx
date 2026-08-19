@@ -4,8 +4,8 @@ import WorkIndex from "@/components/WorkIndex";
 import { projects, profile, siteUrl } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Work",
-  description: `Engineering projects by ${profile.name}: bare-metal ARM firmware, FPGA RTL design, and full-stack platforms.`,
+  title: "Engineering Projects",
+  description: `Embedded firmware, FPGA RTL and full-stack engineering projects by ${profile.name} — ARM Cortex-M4, SystemVerilog, Next.js. UT Arlington.`,
   alternates: { canonical: "/projects" },
   openGraph: {
     title: `Work — ${profile.name}`,
@@ -72,6 +72,7 @@ export default function ProjectsPage() {
 
       <h1 className="mt-8 max-w-[18ch] text-[clamp(2.25rem,5vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.04em]">
         Firmware, silicon, and things people use.
+        <span className="sr-only"> — projects by {profile.name}</span>
       </h1>
 
       <p className="mt-6 max-w-measure text-lg leading-relaxed text-muted">

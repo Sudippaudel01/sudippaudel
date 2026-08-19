@@ -24,6 +24,13 @@ export default function Hero() {
 
       <h1 className="mt-10 max-w-[13ch] text-[clamp(2.75rem,9vw,6.75rem)] font-semibold leading-[0.92] tracking-[-0.05em]">
         {profile.headline}
+        {/* The visible headline is a statement, not a label. This gives the
+            h1 the name and role that a search engine and a screen reader
+            both need, without altering the design. */}
+        <span className="sr-only">
+          {" "}
+          — {profile.name}, {profile.role}
+        </span>
       </h1>
 
       <p className="mt-10 max-w-measure text-lg leading-relaxed text-muted">
