@@ -40,6 +40,17 @@ const nextConfig = {
 
     return [
       {
+        /*
+         * The .vercel.app alias serves a byte-identical copy of the whole
+         * site and was fully crawlable. A canonical tag asks Google to
+         * prefer the real domain; this tells it not to index the copy at
+         * all, which is the stronger signal and removes the duplicate.
+         */
+        source: "/:path*",
+        has: [{ type: "host", value: "(?<host>.*\\.vercel\\.app)" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
         source: "/:path*",
         headers: [
           { key: "Content-Security-Policy", value: csp },
