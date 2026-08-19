@@ -12,6 +12,23 @@ const nextConfig = {
     minimumCacheTTL: 31_536_000,
   },
 
+  async redirects() {
+    /*
+     * www -> apex as a 308 Permanent. Vercel was answering 307 Temporary,
+     * which tells Google the move might be reverted, so it keeps the www URL
+     * as its own entry instead of consolidating signals onto the apex. That
+     * is the "Page with redirect" row in Search Console.
+     */
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.sudippaudel.com" }],
+        destination: "https://sudippaudel.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     /**
      * The site loads no third-party resources at all — fonts are self-hosted
