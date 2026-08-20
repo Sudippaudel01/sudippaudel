@@ -189,7 +189,7 @@ Zod and sends the message through [Resend](https://resend.com).
    ```ini
    RESEND_API_KEY=re_your_real_key_here
    CONTACT_FROM_EMAIL=onboarding@resend.dev
-   CONTACT_TO_EMAIL=paudelsudip93@gmail.com
+   CONTACT_TO_EMAIL=paudelsudip026@gmail.com
    NEXT_PUBLIC_SITE_URL=http://localhost:3000
    ```
 
@@ -244,7 +244,7 @@ git push -u origin main
    | --- | --- |
    | `RESEND_API_KEY` | your `re_…` key |
    | `CONTACT_FROM_EMAIL` | `onboarding@resend.dev` (or your verified domain) |
-   | `CONTACT_TO_EMAIL` | `paudelsudip93@gmail.com` |
+   | `CONTACT_TO_EMAIL` | `paudelsudip026@gmail.com` |
    | `NEXT_PUBLIC_SITE_URL` | `https://sudippaudel.com` |
 
 4. Deploy.
