@@ -70,18 +70,6 @@ export default function Contact() {
               </dd>
             </div>
 
-            <div className="border-b border-rule pb-4">
-              <dt className="label">Phone</dt>
-              <dd className="mt-1.5">
-                <a
-                  href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}
-                  className="text-sm text-ink transition-colors hover:text-signal"
-                >
-                  {profile.phone}
-                </a>
-              </dd>
-            </div>
-
             <div>
               <dt className="label">Elsewhere</dt>
               <dd className="mt-2.5 flex flex-col gap-2">

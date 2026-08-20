@@ -28,7 +28,6 @@ export default function HomePage() {
       url: siteUrl,
       image: `${siteUrl}${profile.portraitUrl}`,
       email: `mailto:${profile.email}`,
-      telephone: profile.phone,
       address: {
         "@type": "PostalAddress",
         addressLocality: "Euless",

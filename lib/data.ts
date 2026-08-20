@@ -33,7 +33,6 @@ export type Profile = {
   availability: string;
   location: string;
   email: string;
-  phone: string;
   resumeUrl: string;
   /** 4:5 portrait in /public. Replace the placeholder with a real photo. */
   portraitUrl: string;
