@@ -142,10 +142,12 @@ export default function Contact() {
             ) : null}
           </div>
 
-          {/* Honeypot — hidden from users, catches naive bots. */}
+          {/* Honeypot — hidden from users, catches naive bots. Deliberately not
+              named "company" or similar: browser autofill recognises those and
+              could fill it for a real visitor, getting their message dropped. */}
           <div className="absolute left-[-9999px]" aria-hidden="true">
-            <label htmlFor="company">Company</label>
-            <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+            <label htmlFor="hp_field">Leave this field empty</label>
+            <input id="hp_field" name="hp_field" type="text" tabIndex={-1} autoComplete="off" />
           </div>
 
           <button

@@ -30,7 +30,7 @@ export default function HomePage() {
       email: `mailto:${profile.email}`,
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Euless",
+        addressLocality: "Dallas–Fort Worth",
         addressRegion: "TX",
         addressCountry: "US",
       },
@@ -59,7 +59,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Work first. The reader decides in seconds; don't spend them on a bio. */}
-      <div className="reveal scroll-mt-24 pt-32">
+      <div className="reveal scroll-mt-24 pt-12 sm:pt-16">
         <section id="work">
           <SectionHeading
             label="Selected work"

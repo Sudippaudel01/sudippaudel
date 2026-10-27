@@ -50,7 +50,7 @@
 @layer components {
   /* Panel label — the silkscreen text on an instrument face. */
   .label {
-    @apply font-mono text-label uppercase text-muted;
+    @apply font-mono text-label uppercase text-muted-bright;
   }
 
   /* Hairline. The only divider on the site. */

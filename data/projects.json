@@ -5,10 +5,11 @@
     "subtitle": "TM4C123GXL (ARM Cortex-M4)",
     "category": "Embedded",
     "context": "Embedded Systems, UTA",
-    "year": "2025",
-    "updated": "2026-08-12",
+    "year": "2026",
+    "updated": "2026-10-27",
     "featured": true,
     "summary": "A bare-metal universal IR remote that records and replays signals from any consumer remote via a UART command shell — every driver written at the register level, with no vendor HAL.",
+    "result": "16 key slots · no vendor HAL",
     "metaDescription": "Bare-metal universal IR remote on ARM Cortex-M4 (TM4C123). Register-level drivers, dual-edge input capture and a 38 kHz PWM carrier — no vendor HAL.",
     "cover": "/projects/ir-remote-control-replacement.png",
     "coverAlt": "Captured IR mark/space waveform with a 38 kHz carrier inset",
@@ -38,7 +39,8 @@
     "highlights": [
       "Wrote all drivers — clock, UART0, timers, NVIC — directly against the datasheet with no vendor HAL.",
       "Chose raw mark/space timing capture over protocol decoding, making the system remote-agnostic.",
-      "Generated the 38 kHz carrier with Timer0B PWM, gated at runtime by switching a pin between GPIO and alternate function."
+      "Generated the 38 kHz carrier with Timer0B PWM, gated at runtime by switching a pin between GPIO and alternate function.",
+      "Stores up to 16 recorded keys in SRAM, each replayable from the UART shell."
     ],
     "sections": [
       {
@@ -61,7 +63,7 @@
     "links": [
       {
         "label": "GitHub",
-        "url": "https://github.com/Sudippaudel01"
+        "url": "https://github.com/Sudippaudel01/tm4c123-ir-remote"
       }
     ]
   },
@@ -71,10 +73,11 @@
     "subtitle": "Intel MAX 10 FPGA",
     "category": "FPGA / RTL",
     "context": "Digital Logic II, UTA",
-    "year": "2025",
-    "updated": "2026-08-12",
+    "year": "2026",
+    "updated": "2026-10-27",
     "featured": true,
     "summary": "A 16-bit IEEE 754 floating-point adder/subtractor designed and synthesized in SystemVerilog, wrapped in a complete keypad-to-display user-facing system.",
+    "result": "706 LEs · timing-analyzed",
     "metaDescription": "16-bit IEEE 754 floating-point adder in SystemVerilog on an Intel MAX 10 FPGA. 706 logic elements, 137 registers, closed with static timing analysis.",
     "cover": "/projects/ieee-754-floating-point-adder.png",
     "coverAlt": "FP16 bit-field layout above the add datapath, normalization shifter marked as the critical path",
@@ -123,7 +126,7 @@
     "links": [
       {
         "label": "GitHub",
-        "url": "https://github.com/Sudippaudel01"
+        "url": "https://github.com/Sudippaudel01/fp16-adder-fpga"
       }
     ]
   },
@@ -134,9 +137,10 @@
     "category": "Full-Stack",
     "context": "antarlens.com",
     "year": "2025",
-    "updated": "2026-08-12",
+    "updated": "2026-10-27",
     "featured": true,
     "summary": "A deployed full-stack AI platform that tracks focus, mood, energy and sleep, then predicts a user's cognitive patterns from their own data via a 30-second daily check-in.",
+    "result": "Live · 30-sec daily check-in",
     "metaDescription": "Full-stack AI platform tracking focus, mood, energy and sleep. Built on Next.js and Supabase with row-level security and a 30-second daily check-in.",
     "cover": "/projects/antarlens.png",
     "coverAlt": "Four tracked cognitive signals plotted over time beside a 30-second check-in ring",
@@ -189,6 +193,14 @@
         "label": "Live site",
         "url": "https://antarlens.com"
       }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "/projects/antarlens-home.jpg",
+        "alt": "AntarLens home page",
+        "caption": "antarlens.com home page, October 2026."
+      }
     ]
   },
   {
@@ -198,9 +210,10 @@
     "category": "Full-Stack",
     "context": "kashlly.com",
     "year": "2025",
-    "updated": "2026-08-12",
+    "updated": "2026-10-27",
     "featured": false,
     "summary": "A deployed AI financial tool for freelancers covering cash flow, invoicing and runway forecasting — including a real-time runway calculator that turns financial data into plain-English guidance.",
+    "result": "Live · real-time runway",
     "metaDescription": "AI financial platform for freelancers: real-time runway forecasting, AI pricing advice and automated invoice follow-up. Built with Next.js and Supabase.",
     "cover": "/projects/kashlly.png",
     "coverAlt": "Cash balance declining toward a runway marker, with invoice follow-up statuses",
@@ -253,51 +266,87 @@
         "label": "Live site",
         "url": "https://kashlly.com"
       }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "/projects/kashlly-home.jpg",
+        "alt": "Kashlly home page",
+        "caption": "kashlly.com home page, October 2026."
+      }
     ]
   },
   {
-    "slug": "network-security-project",
-    "title": "Network Security Project",
-    "subtitle": "Group Lead",
-    "category": "Security",
-    "context": "UTA",
-    "year": "2024",
-    "updated": "2026-08-12",
+    "slug": "dharmamind",
+    "title": "DharmaMind",
+    "subtitle": "AI Guidance Platform · Founder",
+    "category": "Full-Stack",
+    "context": "dharmamind.ai",
+    "year": "2026",
+    "updated": "2026-10-27",
     "featured": false,
-    "summary": "Led a team designing and presenting a network security solution, coordinating task assignments and deadlines through to faculty recognition for the team's contribution.",
-    "metaDescription": "Led a student team designing and presenting a network security solution at UT Arlington, earning faculty recognition for the team's contribution.",
-    "cover": "/projects/network-security-project.png",
-    "coverAlt": "Network topology split by a filtering boundary into untrusted and segmented zones",
+    "summary": "A platform I founded that turns the texts of Sanatana Dharma into practical, conversational guidance. It runs as a Next.js web app and an Expo mobile client on a FastAPI and Postgres backend. Currently in private beta.",
+    "result": "In beta",
+    "metaDescription": "DharmaMind, an AI guidance platform grounded in Sanatana Dharma texts. Founder. Next.js web app, Expo mobile client, FastAPI and Postgres. In beta.",
+    "cover": "/projects/dharmamind.png",
+    "coverAlt": "A chat thread beside the web and mobile clients that share one backend",
     "stack": [
-      "Network security",
-      "Threat modeling",
-      "Team leadership"
+      "Next.js",
+      "React Native (Expo)",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis"
     ],
     "metrics": [
       {
-        "label": "Role",
-        "value": "Group Lead"
+        "label": "Status",
+        "value": "Beta"
       },
       {
-        "label": "Outcome",
-        "value": "Recognized"
+        "label": "Role",
+        "value": "Founder"
+      },
+      {
+        "label": "Clients",
+        "value": "Web + mobile"
+      },
+      {
+        "label": "Backend",
+        "value": "FastAPI"
       }
     ],
     "highlights": [
-      "Led the team through design and final presentation of a network security solution.",
-      "Coordinated task assignments and deadlines across the group.",
-      "Received faculty recognition for the team's contribution."
+      "The mobile app imports its domains, rishis and onboarding config straight from the web app instead of keeping a copy.",
+      "Native streaming uses expo/fetch, because React Native's built-in fetch returns a Response with no readable body.",
+      "The backend refuses to boot in production without MFA_ENCRYPTION_KEY, so a restart can't silently break MFA."
     ],
     "sections": [
       {
-        "heading": "Leading the design",
-        "body": "As group lead I owned both the technical direction of the security solution and the schedule that got it delivered — breaking the design into assignable pieces, setting internal deadlines ahead of the real one, and keeping the final presentation coherent across contributors."
+        "heading": "One source of truth for both clients",
+        "body": "The mobile app imports shared config (domains, rishis and onboarding) from the web app through Metro watchFolders. These files are plain data with no React or Next dependency. A life domain added on web shows up on mobile without anyone remembering to copy it."
       },
       {
-        "heading": "Recognition",
-        "body": "The team's work received faculty recognition for its contribution — the practical validation that the design held up under review."
+        "heading": "Streaming on a device",
+        "body": "React Native's global fetch is an XMLHttpRequest polyfill, and its Response has no readable body, so reading a streamed answer throws. The native client uses expo/fetch instead, which does expose the stream."
+      },
+      {
+        "heading": "Failing loudly on missing keys",
+        "body": "MFA secrets are encrypted at rest, and the key that decrypts them has to stay stable. In production the backend refuses to boot without MFA_ENCRYPTION_KEY. A missing key stops the deploy instead of locking every user out of MFA after the next restart."
       }
     ],
-    "links": []
+    "media": [
+      {
+        "type": "image",
+        "src": "/projects/dharmamind-home.jpg",
+        "alt": "DharmaMind home page",
+        "caption": "dharmamind.ai home page, October 2026."
+      }
+    ],
+    "links": [
+      {
+        "label": "Live site",
+        "url": "https://dharmamind.ai"
+      }
+    ]
   }
 ]

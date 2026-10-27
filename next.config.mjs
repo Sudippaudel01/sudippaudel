@@ -12,6 +12,13 @@ const nextConfig = {
     minimumCacheTTL: 31_536_000,
   },
 
+  // The network-security-project page was removed; keep old links and search results working.
+  async redirects() {
+    return [
+      { source: "/projects/network-security-project", destination: "/#work", permanent: true },
+    ];
+  },
+
   async headers() {
     /**
      * The site loads no third-party resources at all — fonts are self-hosted

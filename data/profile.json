@@ -6,7 +6,8 @@
   "headline": "I write the layer most people import.",
   "summary": "Register-level firmware on ARM Cortex-M4, synthesised SystemVerilog on FPGA, and two platforms running in production. Computer Engineering at UT Arlington.",
   "availability": "Open to engineering internships",
-  "location": "Euless, TX",
+  "graduation": "May 2027",
+  "location": "Dallas–Fort Worth, TX",
   "email": "paudelsudip026@gmail.com",
   "resumeUrl": "/Sudip_Paudel_Resume.pdf",
   "portraitUrl": "/portrait.jpg",
@@ -138,7 +139,7 @@
   ],
   "seo": {
     "siteUrl": "https://sudippaudel.com",
-    "contentUpdated": "2026-08-14",
+    "contentUpdated": "2026-10-27",
     "title": "Sudip Paudel — Computer Engineer | Embedded & FPGA",
     "description": "Computer Engineer working across bare-metal ARM firmware, FPGA RTL design, and full-stack AI platforms. UT Arlington, B.E. Computer Engineering 2027.",
     "keywords": [

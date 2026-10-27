@@ -14,7 +14,8 @@ const config: Config = {
         ground: "#16181a",
         raised: "#1d2023",
         ink: "#e8eae7",
-        muted: "#878d93",
+        // The brighter step is for small uppercase labels, where #878d93 at 11px read as too faint.
+        muted: { DEFAULT: "#878d93", bright: "#a4aaaf" },
         rule: "#2e3236",
         "rule-bright": "#40454a",
         signal: {

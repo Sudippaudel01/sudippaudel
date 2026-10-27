@@ -181,6 +181,45 @@ export default function ProjectDetailPage({ params }: Params) {
         </aside>
       </div>
 
+      {project.media && project.media.length > 0 ? (
+        <section className="mt-20">
+          <h2 className="label">Screenshots &amp; demos</h2>
+          <div className="mt-6 space-y-12">
+            {project.media.map((m) => (
+              <figure key={m.src}>
+                {m.type === "video" ? (
+                  <video
+                    src={m.src}
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster={m.poster}
+                    aria-label={m.alt}
+                    className="h-auto w-full border border-rule"
+                  />
+                ) : (
+                  <Image
+                    src={m.src}
+                    alt={m.alt}
+                    width={1600}
+                    height={1000}
+                    sizes="(max-width: 1120px) 100vw, 1120px"
+                    className="h-auto w-full border border-rule"
+                  />
+                )}
+                {m.caption ? (
+                  <figcaption className="mt-3 text-sm text-muted">
+                    {m.caption}
+                  </figcaption>
+                ) : null}
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <div className="mt-20 hairline" />
 
       <nav

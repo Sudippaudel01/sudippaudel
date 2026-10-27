@@ -9,7 +9,7 @@ const CARD_W = 340;
 const CARD_H = 191; // 16:9
 
 /**
- * The work as a dense index rather than a grid of cards — year, name, stack,
+ * The work as a dense index rather than a grid of cards — year, name, result,
  * role — scannable in one pass. Cards force every project to look equally
  * important; a list lets the reader triage.
  *
@@ -51,52 +51,63 @@ export default function WorkIndex({ projects }: { projects: Project[] }) {
   return (
     <div onMouseMove={onMove} onMouseLeave={() => setActive(null)}>
       <div
-        className="label hidden grid-cols-[4.5rem_1fr_14rem_6rem] gap-x-6 border-b border-rule pb-3 md:grid"
+        className="label hidden grid-cols-[4.5rem_1fr_12rem_6rem] gap-x-6 border-b border-rule pb-3 md:grid lg:grid-cols-[4.5rem_1fr_15rem_6rem]"
         aria-hidden="true"
       >
         <span>Year</span>
         <span>Project</span>
-        <span>Stack</span>
+        <span>Result</span>
         <span className="text-right">Role</span>
       </div>
 
       <ul>
         {projects.map((p) => (
-          <li key={p.slug}>
-            <Link
-              href={`/projects/${p.slug}`}
-              onMouseEnter={() => setActive(p.slug)}
-              onFocus={() => setActive(p.slug)}
-              onBlur={() => setActive(null)}
-              className={`row-link group grid-cols-1 md:grid-cols-[4.5rem_1fr_14rem_6rem] ${
-                active && active !== p.slug ? "opacity-45" : "opacity-100"
-              }`}
-            >
-              <span className="font-mono text-sm text-muted">{p.year}</span>
+          <li
+            key={p.slug}
+            onMouseEnter={() => setActive(p.slug)}
+            className={`row-link group relative grid-cols-1 md:grid-cols-[4.5rem_1fr_12rem_6rem] lg:grid-cols-[4.5rem_1fr_15rem_6rem] ${
+              active && active !== p.slug ? "opacity-45" : "opacity-100"
+            }`}
+          >
+            <span className="font-mono text-sm text-muted">{p.year}</span>
 
+            <span>
               <span className="flex items-baseline gap-3 text-lg text-ink transition-colors group-hover:text-signal-bright">
-                <span>
+                <Link
+                  href={`/projects/${p.slug}`}
+                  onFocus={() => setActive(p.slug)}
+                  onBlur={() => setActive(null)}
+                  className="after:absolute after:inset-0"
+                >
                   {p.title}
-                  <span className="mt-0.5 block text-sm text-muted md:hidden">
-                    {p.stack.slice(0, 3).join(" · ")}
-                  </span>
-                </span>
+                </Link>
                 <span
                   aria-hidden="true"
                   className="translate-x-[-6px] text-signal opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 motion-reduce:transition-none"
                 >
                   →
                 </span>
+                {p.links[0] ? (
+                  <a
+                    href={p.links[0].url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative z-10 shrink-0 whitespace-nowrap label hover:text-signal-bright transition-colors"
+                  >
+                    {p.links[0].label} <span aria-hidden="true">↗</span>
+                  </a>
+                ) : null}
               </span>
-
-              <span className="hidden text-sm text-muted md:block">
+              <span className="mt-0.5 block text-sm text-muted">
                 {p.stack.slice(0, 3).join(" · ")}
               </span>
+            </span>
 
-              <span className="hidden text-right text-sm text-muted md:block">
-                {p.category}
-              </span>
-            </Link>
+            <span className="font-mono text-sm text-signal-bright">{p.result}</span>
+
+            <span className="hidden text-right text-sm text-muted md:block">
+              {p.category}
+            </span>
           </li>
         ))}
       </ul>

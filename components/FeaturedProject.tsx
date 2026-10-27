@@ -12,11 +12,9 @@ import type { Project } from "@/lib/data";
  */
 export default function FeaturedProject({ project }: { project: Project }) {
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group block focus-visible:outline-none"
-    >
-      <div className="relative aspect-[21/9] w-full overflow-hidden bg-raised">
+    <article className="group relative">
+      {/* Frame must match the covers' 16:9 or object-cover crops the art. */}
+      <div className="relative aspect-video w-full overflow-hidden bg-raised">
         <Image
           src={project.cover}
           alt={project.coverAlt}
@@ -26,14 +24,19 @@ export default function FeaturedProject({ project }: { project: Project }) {
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
         <div
-          className="absolute inset-0 ring-1 ring-inset ring-rule transition-colors duration-300 group-hover:ring-signal/50 group-focus-visible:ring-signal"
+          className="absolute inset-0 ring-1 ring-inset ring-rule transition-colors duration-300 group-hover:ring-signal/50"
           aria-hidden="true"
         />
       </div>
 
       <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
         <h3 className="text-2xl font-medium text-ink transition-colors group-hover:text-signal-bright sm:text-[1.75rem]">
-          {project.title}
+          <Link
+            href={`/projects/${project.slug}`}
+            className="after:absolute after:inset-0"
+          >
+            {project.title}
+          </Link>
           <span
             aria-hidden="true"
             className="ml-3 inline-block translate-x-[-6px] text-signal opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 motion-reduce:transition-none"
@@ -49,6 +52,20 @@ export default function FeaturedProject({ project }: { project: Project }) {
       <p className="mt-3 max-w-measure leading-relaxed text-muted">
         {project.summary}
       </p>
-    </Link>
+
+      <div className="mt-4 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+        <p className="font-mono text-sm text-signal-bright">{project.result}</p>
+        {project.links[0] ? (
+          <a
+            href={project.links[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative z-10 whitespace-nowrap label hover:text-signal-bright transition-colors"
+          >
+            {project.links[0].label} <span aria-hidden="true">↗</span>
+          </a>
+        ) : null}
+      </div>
+    </article>
   );
 }

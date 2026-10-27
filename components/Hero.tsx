@@ -19,7 +19,7 @@ export default function Hero() {
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-60 motion-reduce:hidden" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-signal" />
         </span>
-        <p className="label">{profile.availability}</p>
+        <p className="label">{profile.availability} &middot; Graduating {profile.graduation}</p>
       </div>
 
       <h1 className="mt-10 max-w-[13ch] text-[clamp(2.75rem,9vw,6.75rem)] font-semibold leading-[0.92] tracking-[-0.05em]">
@@ -49,9 +49,9 @@ export default function Hero() {
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-quiet ml-1 text-sm text-muted"
+            className="btn-ghost"
           >
-            Résumé
+            Résumé (PDF)
           </a>
         </div>
 

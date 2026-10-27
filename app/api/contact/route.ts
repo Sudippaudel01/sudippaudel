@@ -38,7 +38,7 @@ const ContactSchema = z.object({
    * it can be silently accepted below, rather than returning a field error
    * that tells the bot which input gave it away.
    */
-  company: z.string().max(200).optional(),
+  hp_field: z.string().max(200).optional(),
 });
 
 /**
@@ -133,10 +133,10 @@ export async function POST(request: Request) {
     );
   }
 
-  const { name, email, subject, message, company } = parsed.data;
+  const { name, email, subject, message, hp_field } = parsed.data;
 
   // Honeypot tripped — accept silently so the bot doesn't learn anything.
-  if (company) {
+  if (hp_field) {
     return NextResponse.json({ message: "Message sent." }, { status: 200 });
   }
 

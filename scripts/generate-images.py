@@ -307,54 +307,64 @@ def kashlly():
 
 
 # ---------------------------------------------------------------------------
-# 5. Network security — segmented topology behind a filtering boundary
+# 5. DharmaMind — chat thread beside web + mobile clients on one backend
 # ---------------------------------------------------------------------------
-def netsec():
-    nodes = [(250, 250), (250, 430), (410, 340), (150, 340)]
-    inner = [(880, 220), (1030, 300), (880, 400), (1010, 470), (760, 330)]
-    links = "".join(
-        f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{COPPER}" '
-        f'stroke-opacity="0.4" stroke-width="1.6"/>'
-        for a, b in [(nodes[0], nodes[2]), (nodes[1], nodes[2]), (nodes[3], nodes[2]),
-                     (nodes[0], nodes[3]), (nodes[1], nodes[3])]
+def dharmamind():
+    bubbles = []
+    for i, (right, bw, lines) in enumerate(
+        [(False, 330, (250, 190)), (True, 300, (220,)),
+         (False, 340, (270, 230, 120)), (True, 250, (180,))]
+    ):
+        bh = 30 + 18 * len(lines)
+        by = 150 + [0, 98, 176, 296][i]
+        bx = 90 + (60 if right else 0)
+        fill = PANEL
+        stroke = BRIGHT if right else COPPER
+        bubbles.append(
+            f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="14" fill="{fill}" '
+            f'stroke="{stroke}" stroke-opacity="0.7" stroke-width="1.6"/>'
+        )
+        for j, lw in enumerate(lines):
+            bubbles.append(
+                f'<rect x="{bx+20}" y="{by+20+j*18}" width="{lw}" height="7" rx="3.5" '
+                f'fill="{stroke}" fill-opacity="0.45"/>'
+            )
+
+    # clients -> backend
+    browser = (
+        f'<rect x="640" y="170" width="190" height="130" rx="6" fill="{PANEL}" '
+        f'stroke="{COPPER}" stroke-width="1.8" stroke-opacity="0.8"/>'
+        f'<path d="M640 196 H830" stroke="{COPPER}" stroke-opacity="0.5" stroke-width="1.4"/>'
+        + "".join(f'<circle cx="{656+i*14}" cy="183" r="3.5" fill="{MINT}"/>' for i in range(3))
+        + f'<rect x="658" y="214" width="110" height="7" rx="3.5" fill="{COPPER}" fill-opacity="0.45"/>'
+        f'<rect x="658" y="232" width="140" height="7" rx="3.5" fill="{COPPER}" fill-opacity="0.3"/>'
+        f'<rect x="658" y="250" width="90" height="7" rx="3.5" fill="{COPPER}" fill-opacity="0.3"/>'
+        f'<text x="748" y="324" text-anchor="start" font-family="{MONO}" font-size="13" '
+        f'fill="{MINT}" letter-spacing="2">WEB</text>'
     )
-    ilinks = "".join(
-        f'<path d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{MINT}" '
-        f'stroke-opacity="0.45" stroke-width="1.6"/>'
-        for a, b in [(inner[4], inner[0]), (inner[4], inner[2]), (inner[0], inner[1]),
-                     (inner[2], inner[3]), (inner[1], inner[3])]
+    phone = (
+        f'<rect x="910" y="150" width="90" height="170" rx="14" fill="{PANEL}" '
+        f'stroke="{COPPER}" stroke-width="1.8" stroke-opacity="0.8"/>'
+        f'<rect x="938" y="162" width="34" height="5" rx="2.5" fill="{MINT}"/>'
+        f'<rect x="926" y="190" width="58" height="7" rx="3.5" fill="{COPPER}" fill-opacity="0.45"/>'
+        f'<rect x="926" y="208" width="40" height="7" rx="3.5" fill="{COPPER}" fill-opacity="0.3"/>'
+        f'<rect x="926" y="226" width="52" height="7" rx="3.5" fill="{COPPER}" fill-opacity="0.3"/>'
+        f'<text x="968" y="344" text-anchor="start" font-family="{MONO}" font-size="13" '
+        f'fill="{MINT}" letter-spacing="2">MOBILE</text>'
     )
-    dots = "".join(
-        f'<circle cx="{x}" cy="{y}" r="15" fill="{BG}" stroke="{COPPER}" stroke-width="3"/>'
-        for x, y in nodes
-    ) + "".join(
-        f'<circle cx="{x}" cy="{y}" r="15" fill="{BG}" stroke="{MINT}" stroke-width="3"/>'
-        for x, y in inner
+    links = (
+        f'<path d="M735 300 V385 H830 V420" fill="none" stroke="{COPPER}" stroke-width="1.8" stroke-opacity="0.7"/>'
+        f'<path d="M955 320 V385 H900 V420" fill="none" stroke="{COPPER}" stroke-width="1.8" stroke-opacity="0.7"/>'
     )
-    # filtering boundary
-    bx = 600
-    boundary = (
-        f'<path d="M{bx} 130 V545" stroke="{BRIGHT}" stroke-width="2.4" stroke-dasharray="12 8"/>'
-        f'<rect x="{bx-92}" y="305" width="184" height="66" fill="{PANEL}" '
-        f'stroke="{BRIGHT}" stroke-width="2"/>'
-        f'<text x="{bx}" y="345" text-anchor="middle" font-family="{MONO}" '
-        f'font-size="16" fill="{BRIGHT}" letter-spacing="2">FILTER</text>'
+    backend = (
+        f'<rect x="740" y="420" width="250" height="90" fill="{PANEL}" stroke="{BRIGHT}" '
+        f'stroke-width="2.4"/>'
+        f'<text x="865" y="473" text-anchor="middle" font-family="{MONO}" font-size="20" '
+        f'fill="{BRIGHT}" letter-spacing="3">FastAPI</text>'
     )
-    blocked = "".join(
-        f'<path d="M{450} {y} H{bx-100}" stroke="{COPPER}" stroke-opacity="0.5" '
-        f'stroke-width="1.6"/><path d="M{bx-96} {y-8} l16 16 M{bx-96} {y+8} l16 -16" '
-        f'stroke="{BRIGHT}" stroke-width="2.2"/>'
-        for y in (215, 465)
-    )
-    body = frame("Segmentation and threat mitigation — team lead",
-                 "NETWORK TOPOLOGY") + f"""
-  <text x="250" y="150" text-anchor="middle" font-family="{MONO}" font-size="14"
-        fill="{COPPER}" letter-spacing="3">UNTRUSTED</text>
-  <text x="920" y="150" text-anchor="middle" font-family="{MONO}" font-size="14"
-        fill="{MINT}" letter-spacing="3">SEGMENTED</text>
-  {links}{ilinks}{blocked}{boundary}{dots}
-"""
-    render("network-security-project", body)
+    body = frame("Web + mobile clients · one FastAPI backend", "GUIDANCE ENGINE") \
+        + "".join(bubbles) + links + browser + phone + backend
+    render("dharmamind", body)
 
 
 # ---------------------------------------------------------------------------
@@ -449,6 +459,6 @@ if __name__ == "__main__":
     fp16()
     antarlens()
     kashlly()
-    netsec()
+    dharmamind()
     portrait()
     print("Done.")
