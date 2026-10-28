@@ -6,7 +6,7 @@
     "category": "Embedded",
     "context": "Embedded Systems, UTA",
     "year": "2026",
-    "updated": "2026-10-27",
+    "updated": "2026-10-28",
     "featured": true,
     "summary": "A bare-metal universal IR remote that records and replays signals from any consumer remote via a UART command shell — every driver written at the register level, with no vendor HAL.",
     "result": "16 key slots · no vendor HAL",
@@ -22,6 +22,10 @@
       {
         "label": "Carrier",
         "value": "38 kHz"
+      },
+      {
+        "label": "Key slots",
+        "value": "16"
       },
       {
         "label": "Timestamp",

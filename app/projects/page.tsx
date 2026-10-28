@@ -3,12 +3,14 @@ import JsonLd from "@/components/JsonLd";
 import WorkIndex from "@/components/WorkIndex";
 import { projects, profile, siteUrl } from "@/lib/data";
 
+const pageTitle = "Engineering Projects";
+
 export const metadata: Metadata = {
-  title: "Engineering Projects",
+  title: pageTitle,
   description: `Embedded firmware, FPGA RTL and full-stack engineering projects by ${profile.name} — ARM Cortex-M4, SystemVerilog, Next.js. UT Arlington.`,
   alternates: { canonical: "/projects" },
   openGraph: {
-    title: `Work — ${profile.name}`,
+    title: `${pageTitle} — ${profile.name}`,
     description: `Engineering projects by ${profile.name}: embedded firmware, FPGA RTL, and deployed platforms.`,
     url: "/projects",
     /*
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Work — ${profile.name}`,
+    title: `${pageTitle} — ${profile.name}`,
     description: `Engineering projects by ${profile.name}: embedded firmware, FPGA RTL, and deployed platforms.`,
     images: [profile.seo.ogImage],
   },

@@ -92,7 +92,7 @@ export default function WorkIndex({ projects }: { projects: Project[] }) {
                     href={p.links[0].url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative z-10 shrink-0 whitespace-nowrap label hover:text-signal-bright transition-colors"
+                    className="relative z-10 inline-block py-1.5 -my-1.5 shrink-0 whitespace-nowrap label hover:text-signal-bright transition-colors"
                   >
                     {p.links[0].label} <span aria-hidden="true">↗</span>
                   </a>

@@ -60,7 +60,7 @@ export default function FeaturedProject({ project }: { project: Project }) {
             href={project.links[0].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative z-10 whitespace-nowrap label hover:text-signal-bright transition-colors"
+            className="relative z-10 inline-block py-1.5 -my-1.5 whitespace-nowrap label hover:text-signal-bright transition-colors"
           >
             {project.links[0].label} <span aria-hidden="true">↗</span>
           </a>
