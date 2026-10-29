@@ -20,7 +20,7 @@ export default function Education() {
       <SectionHeading
         label="Education"
         title="Where I studied"
-        srTitle="Education: B.E. Computer Engineering, UT Arlington"
+        srTitle="Education: B.S. Computer Engineering, UT Arlington"
       />
 
       <ul>
